@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "web:start": "cd apps/cobase-web/ && npm start"
+  }
+}
