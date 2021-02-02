@@ -8,6 +8,8 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { createUseStyles } from 'react-jss'
 
+import ShowMoreLink from 'shared/atoms/ShowMoreLink'
+
 import { WhiteColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
@@ -29,14 +31,6 @@ const useStyles = createUseStyles({
 
   navbar_link_selected: {
     borderBottom: [1, 'solid', WhiteColor],
-  },
-
-  point: {
-    width: 5,
-    height: 5,
-    backgroundColor: WhiteColor,
-    marginRight: 5,
-    borderRadius: 3,
   },
 })
 
@@ -74,6 +68,10 @@ const Navbar = () => {
           >
             Team
           </NavLink>
+        </li>
+
+        <li className={classes.item}>
+          <ShowMoreLink />
         </li>
       </ul>
     </nav>
