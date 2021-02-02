@@ -23,6 +23,12 @@ const useStyles = createUseStyles({
 
   sidebar_open: {
     left: 0,
+    transition: '0.5s',
+
+    '@media (max-width: 768px)': {
+      left: -250,
+      transition: '0.5s',
+    },
   },
 })
 

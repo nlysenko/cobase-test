@@ -9,12 +9,17 @@ import { NavLink } from 'react-router-dom'
 import { createUseStyles } from 'react-jss'
 
 import ShowMoreLink from 'shared/atoms/ShowMoreLink'
+import ToggleSideBarBtn from 'shared/atoms/ToggleSideBarBtn'
 
 import { WhiteColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
   navbar_list: {
     display: 'flex',
+
+    '@media (max-width: 768px)': {
+      display: 'none',
+    },
   },
 
   item: {
@@ -74,6 +79,8 @@ const Navbar = () => {
           <ShowMoreLink />
         </li>
       </ul>
+
+      <ToggleSideBarBtn />
     </nav>
   )
 }

@@ -7,9 +7,9 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 
-import ToolBar from 'shared/components/ToolBar/ToolBar'
-import SideBar from 'shared/components/SideBar/SideBar'
-import Panel from 'shared/components/Panel/Panel'
+import ToolBar from 'components/ToolBar/ToolBar'
+import SideBar from 'components/SideBar/SideBar'
+import Panel from 'components/Panel/Panel'
 
 import routes from 'app/routes'
 
@@ -24,6 +24,12 @@ const useStyles = createUseStyles({
 
   sidebar_open: {
     paddingLeft: 250,
+    transition: '0.5s',
+
+    '@media (max-width: 768px)': {
+      paddingLeft: 0,
+      transition: '0.5s',
+    },
   },
 })
 

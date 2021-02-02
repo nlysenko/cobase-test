@@ -7,7 +7,7 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 
-import Main from 'shared/components/Main/Main'
+import Main from 'components/Main/Main'
 
 import { BgColor } from 'shared/styles/colors'
 
