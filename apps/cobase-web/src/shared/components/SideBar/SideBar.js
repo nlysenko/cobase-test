@@ -1,6 +1,6 @@
 /**
  *
- * Navigation
+ * SideBar
  *
  */
 
@@ -12,24 +12,27 @@ import { createUseStyles } from 'react-jss'
 import { RhinoColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  navigation: {
+  sidebar: {
+    position: 'fixed',
+    top: 0,
+    left: -250,
+    bottom: 0,
     width: 250,
     backgroundColor: RhinoColor,
-    float: 'left',
+  },
+
+  sidebar_open: {
+    left: 0,
   },
 })
 
-const Navigation = () => {
+const SideBar = (props) => {
   const classes = useStyles()
 
   return (
-    <div className={classes.navigation}>
+    <div className={`${classes.sidebar} ${classes.sidebar_open}`}>
       <nav>
         <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-
           <li>
             <Link to="/overview">Overview</Link>
           </li>
@@ -55,4 +58,4 @@ const Navigation = () => {
   )
 }
 
-export default Navigation
+export default SideBar

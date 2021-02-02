@@ -15,6 +15,10 @@ const useStyles = createUseStyles({
     backgroundColor: WhiteColor,
     width: 780,
     height: 1000,
+    margin: {
+      top: 72,
+      left: 39,
+    },
   },
 })
 

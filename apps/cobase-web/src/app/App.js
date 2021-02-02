@@ -7,7 +7,6 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 
-import Navigation from 'shared/components/Navigation/Navigation'
 import Main from 'shared/components/Main/Main'
 
 import { BgColor } from 'shared/styles/colors'
@@ -40,19 +39,13 @@ const useStyles = createUseStyles({
       listStyle: 'none',
     },
   },
-
-  app: {
-    display: 'flex',
-  },
 })
 
 const App = () => {
-  const classes = useStyles()
+  useStyles()
 
   return (
-    <div role="application" className={classes.app}>
-      <Navigation />
-
+    <div role="application" id="app">
       <Main />
     </div>
   )
