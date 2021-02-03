@@ -54,7 +54,7 @@ const Main = () => {
     <div
       className={`${classes.main} ${sideBarOpen ? classes.sidebar_open : ''}`}
     >
-      <ToolBar toggleSideBar={toggleSideBar} />
+      <ToolBar sideBarIsOpen={sideBarOpen} toggleSideBar={toggleSideBar} />
 
       <SideBar sideBarIsOpen={sideBarOpen} />
 

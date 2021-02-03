@@ -45,8 +45,8 @@ const useStyles = createUseStyles({
       width: '100%',
       padding: {
         top: 72,
-        left: 15,
-        right: 15,
+        left: 14,
+        right: 14,
       },
       transition: '0.5s',
     },
