@@ -20,7 +20,7 @@ const useStyles = createUseStyles({
     background: 'inherit',
     cursor: 'pointer',
 
-    '@media (max-width: 768px)': {
+    '@media (max-width: 767px)': {
       display: 'flex',
     },
   },
@@ -37,11 +37,13 @@ const useStyles = createUseStyles({
   },
 })
 
-const ToggleSideBarBtn = () => {
+const ToggleSideBarBtn = (props) => {
   const classes = useStyles()
 
+  const { toggleSideBar } = props
+
   return (
-    <button className={classes.toggle_btn}>
+    <button className={classes.toggle_btn} onClick={toggleSideBar}>
       <i className={classes.line} />
 
       <i className={classes.line} />

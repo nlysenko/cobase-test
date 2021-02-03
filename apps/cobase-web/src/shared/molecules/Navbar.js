@@ -17,7 +17,7 @@ const useStyles = createUseStyles({
   navbar_list: {
     display: 'flex',
 
-    '@media (max-width: 768px)': {
+    '@media (max-width: 767px)': {
       display: 'none',
     },
   },
@@ -39,7 +39,7 @@ const useStyles = createUseStyles({
   },
 })
 
-const Navbar = () => {
+const Navbar = (props) => {
   const classes = useStyles()
 
   return (
@@ -80,7 +80,7 @@ const Navbar = () => {
         </li>
       </ul>
 
-      <ToggleSideBarBtn />
+      <ToggleSideBarBtn toggleSideBar={props.toggleSideBar} />
     </nav>
   )
 }

@@ -20,7 +20,18 @@ const useStyles = createUseStyles({
     overflow: 'scroll',
   },
 
-  inner: {
+  sidebar_open_inner: {
+    width: 1920,
+    height: 1200,
+    backgroundColor: BgColor,
+    padding: {
+      top: 72,
+      left: 288,
+    },
+    transition: '0.5s',
+  },
+
+  sidebar_closed_inner: {
     width: 1920,
     height: 1200,
     backgroundColor: BgColor,
@@ -41,7 +52,16 @@ const useStyles = createUseStyles({
     },
   },
 
-  page: {
+  sidebar_open_page: {
+    width: 780,
+    height: 828,
+    backgroundColor: WhiteColor,
+    border: [1, 'solid', BaliHaiColor],
+    borderRadius: 4,
+    transition: '0.5s',
+  },
+
+  sidebar_closed_page: {
     width: 780,
     height: 828,
     backgroundColor: WhiteColor,
@@ -56,12 +76,26 @@ const useStyles = createUseStyles({
 })
 
 const MainPage = (props) => {
+  const { sideBarIsOpen } = props
+
   const classes = useStyles()
 
   return (
     <div className={classes.wrapper}>
-      <div className={classes.inner}>
-        <div className={classes.page}>
+      <div
+        className={`${
+          sideBarIsOpen
+            ? classes.sidebar_open_inner
+            : classes.sidebar_closed_inner
+        }`}
+      >
+        <div
+          className={`${
+            sideBarIsOpen
+              ? classes.sidebar_open_page
+              : classes.sidebar_closed_page
+          }`}
+        >
           <Switch>{props.children}</Switch>
         </div>
       </div>

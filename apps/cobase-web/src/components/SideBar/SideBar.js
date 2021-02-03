@@ -20,24 +20,26 @@ const useStyles = createUseStyles({
     zIndex: 100,
     width: 250,
     backgroundColor: RhinoColor,
+    transition: '0.5s',
   },
 
   sidebar_open: {
     left: 0,
     transition: '0.5s',
-
-    '@media (max-width: 768px)': {
-      left: -250,
-      transition: '0.5s',
-    },
   },
 })
 
 const SideBar = (props) => {
+  const { sideBarIsOpen } = props
+
   const classes = useStyles()
 
   return (
-    <div className={`${classes.sidebar} ${classes.sidebar_open}`}>
+    <div
+      className={`${classes.sidebar} ${
+        sideBarIsOpen ? classes.sidebar_open : ''
+      }`}
+    >
       <nav>
         <ul>
           <li>

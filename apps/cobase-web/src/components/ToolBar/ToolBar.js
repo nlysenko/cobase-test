@@ -29,12 +29,12 @@ const useStyles = createUseStyles({
   },
 })
 
-const ToolBar = () => {
+const ToolBar = (props) => {
   const classes = useStyles()
 
   return (
     <div className={classes.toolbar}>
-      <Navbar />
+      <Navbar toggleSideBar={props.toggleSideBar} />
     </div>
   )
 }
