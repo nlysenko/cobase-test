@@ -9,8 +9,6 @@ import { createUseStyles } from 'react-jss'
 
 import Main from 'components/Main/Main'
 
-import { BgColor } from 'shared/styles/colors'
-
 const useStyles = createUseStyles({
   '@global': {
     '*': {
@@ -32,7 +30,6 @@ const useStyles = createUseStyles({
       color: 'black',
       fontSize: 16,
       fontFamily: 'Heebo-Regular',
-      backgroundColor: BgColor,
     },
 
     ul: {

@@ -17,6 +17,7 @@ const useStyles = createUseStyles({
     top: 0,
     left: -250,
     bottom: 0,
+    zIndex: 100,
     width: 250,
     backgroundColor: RhinoColor,
   },

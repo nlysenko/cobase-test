@@ -9,7 +9,7 @@ import { createUseStyles } from 'react-jss'
 
 import ToolBar from 'components/ToolBar/ToolBar'
 import SideBar from 'components/SideBar/SideBar'
-import Panel from 'components/Panel/Panel'
+import MainPage from 'components/MainPage/MainPage'
 
 import routes from 'app/routes'
 
@@ -42,7 +42,7 @@ const Main = () => {
 
       <SideBar />
 
-      <Panel children={routes} />
+      <MainPage children={routes} />
     </div>
   )
 }
