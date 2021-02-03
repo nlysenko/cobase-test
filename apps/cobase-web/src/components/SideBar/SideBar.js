@@ -10,6 +10,9 @@ import { createUseStyles } from 'react-jss'
 
 import Logo from 'shared/atoms/Logo'
 
+import playAudioMelody from 'shared/audio/playAudioMelody'
+import OpenNewPageMelody from 'assets/mp3/open-page.mp3'
+
 import { RhinoColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
@@ -46,23 +49,48 @@ const SideBar = (props) => {
       <nav>
         <ul>
           <li>
-            <Link to="/overview">Overview</Link>
+            <Link
+              to="/overview"
+              onClick={() => playAudioMelody(OpenNewPageMelody)}
+            >
+              Overview
+            </Link>
           </li>
 
           <li>
-            <Link to="/task-manager">Task manager</Link>
+            <Link
+              to="/task-manager"
+              onClick={() => playAudioMelody(OpenNewPageMelody)}
+            >
+              Task manager
+            </Link>
           </li>
 
           <li>
-            <Link to="/drawings">Drawings</Link>
+            <Link
+              to="/drawings"
+              onClick={() => playAudioMelody(OpenNewPageMelody)}
+            >
+              Drawings
+            </Link>
           </li>
 
           <li>
-            <Link to="/employees">Employees</Link>
+            <Link
+              to="/employees"
+              onClick={() => playAudioMelody(OpenNewPageMelody)}
+            >
+              Employees
+            </Link>
           </li>
 
           <li>
-            <Link to="/reports">Reports</Link>
+            <Link
+              to="/reports"
+              onClick={() => playAudioMelody(OpenNewPageMelody)}
+            >
+              Reports
+            </Link>
           </li>
         </ul>
       </nav>

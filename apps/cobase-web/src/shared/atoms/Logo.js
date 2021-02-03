@@ -10,6 +10,9 @@ import { Link } from 'react-router-dom'
 
 import CobaseLogo from 'assets/img/cobase-logo.png'
 
+import playAudioMelody from 'shared/audio/playAudioMelody'
+import OpenNewPageMelody from 'assets/mp3/open-page.mp3'
+
 import { DustyGrayColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
@@ -37,7 +40,11 @@ const Logo = () => {
 
   return (
     <div className={classes.wrapper}>
-      <Link className={classes.logo_link} to="/">
+      <Link
+        className={classes.logo_link}
+        to="/"
+        onClick={() => playAudioMelody(OpenNewPageMelody)}
+      >
         <img className={classes.logo} src={CobaseLogo} alt="logo" />
       </Link>
     </div>

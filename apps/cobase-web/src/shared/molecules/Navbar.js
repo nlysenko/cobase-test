@@ -11,6 +11,9 @@ import { createUseStyles } from 'react-jss'
 import ShowMoreLink from 'shared/atoms/ShowMoreLink'
 import ToggleSideBarBtn from 'shared/atoms/ToggleSideBarBtn'
 
+import playAudioMelody from 'shared/audio/playAudioMelody'
+import OpenNewPageMelody from 'assets/mp3/open-page.mp3'
+
 import { WhiteColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
@@ -50,6 +53,7 @@ const Navbar = (props) => {
             className={classes.navbar_link}
             activeClassName={classes.navbar_link_selected}
             to="/projects"
+            onClick={() => playAudioMelody(OpenNewPageMelody)}
           >
             Projects
           </NavLink>
@@ -60,6 +64,7 @@ const Navbar = (props) => {
             className={classes.navbar_link}
             activeClassName={classes.navbar_link_selected}
             to="/people"
+            onClick={() => playAudioMelody(OpenNewPageMelody)}
           >
             People
           </NavLink>
@@ -70,6 +75,7 @@ const Navbar = (props) => {
             className={classes.navbar_link}
             activeClassName={classes.navbar_link_selected}
             to="/team"
+            onClick={() => playAudioMelody(OpenNewPageMelody)}
           >
             Team
           </NavLink>
