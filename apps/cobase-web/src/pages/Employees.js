@@ -4,9 +4,13 @@
  *
  */
 
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Employees = () => {
+  useEffect(() => {
+    document.title = 'Employees | CoBase'
+  })
+
   return <div>employees</div>
 }
 
