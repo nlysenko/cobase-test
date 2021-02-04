@@ -5,13 +5,10 @@
  */
 
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { createUseStyles } from 'react-jss'
 
 import Logo from 'shared/atoms/Logo'
-
-import playAudioMelody from 'shared/audio/playAudioMelody'
-import OpenNewPageMelody from 'assets/mp3/open-page.mp3'
+import SideBarMenu from 'shared/molecules/SideBarMenu'
 
 import { RhinoColor } from 'shared/styles/colors'
 
@@ -46,54 +43,7 @@ const SideBar = (props) => {
     >
       <Logo />
 
-      <nav>
-        <ul>
-          <li>
-            <Link
-              to="/overview"
-              onClick={() => playAudioMelody(OpenNewPageMelody)}
-            >
-              Overview
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              to="/task-manager"
-              onClick={() => playAudioMelody(OpenNewPageMelody)}
-            >
-              Task manager
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              to="/drawings"
-              onClick={() => playAudioMelody(OpenNewPageMelody)}
-            >
-              Drawings
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              to="/employees"
-              onClick={() => playAudioMelody(OpenNewPageMelody)}
-            >
-              Employees
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              to="/reports"
-              onClick={() => playAudioMelody(OpenNewPageMelody)}
-            >
-              Reports
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      <SideBarMenu />
     </div>
   )
 }

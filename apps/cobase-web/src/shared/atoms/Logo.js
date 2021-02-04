@@ -16,7 +16,7 @@ import OpenNewPageMelody from 'assets/mp3/open-page.mp3'
 import { DustyGrayColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  wrapper: {
+  logo_wrapper: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -30,7 +30,7 @@ const useStyles = createUseStyles({
     height: 18,
   },
 
-  logo: {
+  logo_img: {
     height: 15,
   },
 })
@@ -39,13 +39,13 @@ const Logo = () => {
   const classes = useStyles()
 
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.logo_wrapper}>
       <Link
         className={classes.logo_link}
         to="/"
         onClick={() => playAudioMelody(OpenNewPageMelody)}
       >
-        <img className={classes.logo} src={CobaseLogo} alt="logo" />
+        <img className={classes.logo_img} src={CobaseLogo} alt="logo" />
       </Link>
     </div>
   )

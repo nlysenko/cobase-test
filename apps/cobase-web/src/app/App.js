@@ -9,6 +9,8 @@ import { createUseStyles } from 'react-jss'
 
 import Main from 'components/Main/Main'
 
+import { WhiteColor, BlackColor } from 'shared/styles/colors'
+
 const useStyles = createUseStyles({
   '@global': {
     '*': {
@@ -22,12 +24,12 @@ const useStyles = createUseStyles({
     },
 
     a: {
-      color: 'white',
+      color: WhiteColor,
       textDecoration: 'none',
     },
 
     body: {
-      color: 'black',
+      color: BlackColor,
       fontSize: 16,
       fontFamily: 'Heebo-Regular',
     },
