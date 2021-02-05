@@ -4,11 +4,13 @@
  *
  */
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { createUseStyles } from 'react-jss'
 
 import Header from 'shared/molecules/Header'
-import SideBarMenu from 'shared/molecules/SideBarMenu'
+import Menu from 'shared/molecules/Menu'
+import Progress from 'shared/molecules/Progress'
 
 import { RhinoColor } from 'shared/styles/colors'
 
@@ -22,6 +24,7 @@ const useStyles = createUseStyles({
     width: 250,
     backgroundColor: RhinoColor,
     transition: '0.5s',
+    overflow: 'scroll',
   },
 
   sidebar_open: {
@@ -31,10 +34,21 @@ const useStyles = createUseStyles({
 })
 
 const SideBar = (props) => {
+  const [progressIsOpen, setProgressIsOpen] = useState(false)
+
   const { sideBarIsOpen } = props
 
-  const classes = useStyles()
+  const usePageViews = () => {
+    let location = useLocation()
 
+    useEffect(() => {
+      setProgressIsOpen(location.pathname === '/task-manager')
+    }, [location])
+  }
+
+  usePageViews() // when the task manager page is in an open setting visible progress bar
+
+  const classes = useStyles()
   return (
     <div
       className={`${classes.sidebar} ${
@@ -43,7 +57,9 @@ const SideBar = (props) => {
     >
       <Header />
 
-      <SideBarMenu />
+      <Menu />
+
+      {progressIsOpen ? <Progress /> : false}
     </div>
   )
 }

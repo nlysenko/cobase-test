@@ -1,6 +1,6 @@
 /**
  *
- * SideBarMenu
+ * Menu
  *
  */
 
@@ -31,7 +31,7 @@ const useStyles = createUseStyles({
     paddingLeft: 30,
   },
 
-  sidebar: {
+  navbar: {
     paddingTop: 10,
   },
 
@@ -62,14 +62,14 @@ const useStyles = createUseStyles({
   },
 })
 
-const SideBarMenu = () => {
+const Menu = () => {
   const classes = useStyles()
 
   return (
     <div className={classes.menu}>
       <h3 className={classes.title}>MENU</h3>
 
-      <nav className={classes.sidebar}>
+      <nav className={classes.navbar}>
         <ul className={classes.list}>
           <li className={classes.item}>
             <NavLink
@@ -161,4 +161,4 @@ const SideBarMenu = () => {
   )
 }
 
-export default SideBarMenu
+export default Menu
