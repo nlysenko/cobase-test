@@ -7,7 +7,7 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 
-import Logo from 'shared/atoms/Logo'
+import Header from 'shared/molecules/Header'
 import SideBarMenu from 'shared/molecules/SideBarMenu'
 
 import { RhinoColor } from 'shared/styles/colors'
@@ -41,7 +41,7 @@ const SideBar = (props) => {
         sideBarIsOpen ? classes.sidebar_open : ''
       }`}
     >
-      <Logo />
+      <Header />
 
       <SideBarMenu />
     </div>
