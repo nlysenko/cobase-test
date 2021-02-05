@@ -21,7 +21,10 @@ import { NepalColor, FrenchPassColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
   menu: {
-    paddingTop: 31,
+    padding: {
+      top: 31,
+      bottom: 25,
+    },
   },
 
   title: {

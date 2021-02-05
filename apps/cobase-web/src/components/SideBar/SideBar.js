@@ -11,6 +11,7 @@ import { createUseStyles } from 'react-jss'
 import Header from 'shared/molecules/Header'
 import Menu from 'shared/molecules/Menu'
 import Progress from 'shared/molecules/Progress'
+import Footer from 'shared/molecules/Footer'
 
 import { RhinoColor } from 'shared/styles/colors'
 
@@ -60,6 +61,8 @@ const SideBar = (props) => {
       <Menu />
 
       {progressIsOpen ? <Progress /> : false}
+
+      <Footer />
     </div>
   )
 }

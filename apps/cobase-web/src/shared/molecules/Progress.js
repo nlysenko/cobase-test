@@ -18,10 +18,7 @@ import {
 
 const useStyles = createUseStyles({
   wrapper: {
-    padding: {
-      top: 25,
-      left: 30,
-    },
+    paddingLeft: 30,
   },
 
   title: {
