@@ -5,6 +5,7 @@
  */
 
 export const BgColor = '#ecf5fd'
+export const BlackColor = '#000'
 export const WhiteColor = '#fff'
 export const RhinoColor = '#2c405a'
 export const NepalColor = '#8dabc4'
@@ -18,3 +19,8 @@ export const AzureRadianceColor = '#0093ee'
 export const LilyWhiteColor = '#e4f5ff'
 export const PeriwinkleGrayColor = '#c5d9e8'
 export const TorchRedColor = '#ff151f'
+export const BaliHaiColor = 'rgba(183, 210, 229, 0.8)'
+export const DustyGrayColor = 'hsla(0,0%,100%,.1)'
+export const FrenchPassColor = 'rgba(185, 216, 254, 0.12)'
+export const WaikawaGrayColor = 'rgba(171,125,246,.2)'
+export const BotticelliColor = '#d8e5ee'

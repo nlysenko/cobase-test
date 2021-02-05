@@ -7,7 +7,9 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 
-import { BgColor } from 'shared/styles/colors'
+import Main from 'components/Main/Main'
+
+import { WhiteColor, BlackColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
   '@global': {
@@ -21,11 +23,15 @@ const useStyles = createUseStyles({
       boxSizing: 'border-box',
     },
 
+    a: {
+      color: WhiteColor,
+      textDecoration: 'none',
+    },
+
     body: {
-      color: 'black',
+      color: BlackColor,
       fontSize: 16,
       fontFamily: 'Heebo-Regular',
-      backgroundColor: BgColor,
     },
 
     ul: {
@@ -35,9 +41,13 @@ const useStyles = createUseStyles({
 })
 
 const App = () => {
-  const classes = useStyles()
+  useStyles()
 
-  return <div className={classes.app} />
+  return (
+    <div role="application" id="app">
+      <Main />
+    </div>
+  )
 }
 
 export default App
