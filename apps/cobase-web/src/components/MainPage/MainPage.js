@@ -22,7 +22,7 @@ const useStyles = createUseStyles({
 
   sidebar_open_inner: {
     width: 1920,
-    height: 1200,
+    height: 960,
     backgroundColor: BgColor,
     padding: {
       top: 72,
