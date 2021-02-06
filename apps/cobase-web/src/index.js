@@ -13,7 +13,7 @@ import App from 'app/App'
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/cobase-test">
       <App />
     </BrowserRouter>
   </React.StrictMode>,
