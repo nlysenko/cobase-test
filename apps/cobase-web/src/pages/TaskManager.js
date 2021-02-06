@@ -8,6 +8,8 @@ import React, { useEffect } from 'react'
 import { createUseStyles } from 'react-jss'
 
 import TaskProgress from 'shared/molecules/TaskProgress'
+import TaskControls from 'shared/molecules/TaskControls'
+
 import PrevIssueButton from 'shared/atoms/PrevIssueButton'
 import NextIssueButton from 'shared/atoms/NextIssueButton'
 
@@ -19,6 +21,16 @@ const useStyles = createUseStyles({
     borderBottom: [1, 'solid', BotticelliColor],
     display: 'flex',
     alignItems: 'center',
+  },
+
+  page_content: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: {
+      top: 23,
+      left: 34,
+      right: 28,
+    },
   },
 })
 
@@ -38,6 +50,10 @@ const TaskManager = () => {
 
         <NextIssueButton />
       </header>
+
+      <main className={classes.page_content}>
+        <TaskControls />
+      </main>
     </div>
   )
 }
