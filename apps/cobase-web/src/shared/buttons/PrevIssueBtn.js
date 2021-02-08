@@ -1,6 +1,6 @@
 /**
  *
- * PrevIssueButton
+ * PrevIssueBtn
  *
  */
 
@@ -14,7 +14,7 @@ import {
 } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  prev_issue: {
+  prev_issue_btn: {
     height: '100%',
     width: 52,
     display: 'flex',
@@ -57,14 +57,15 @@ const useStyles = createUseStyles({
   },
 })
 
-const PrevIssueButton = () => {
-  const classes = useStyles()
+const PrevIssueBtn = (props) => {
+  const { getPrevIssue } = props
 
+  const classes = useStyles()
   return (
-    <button className={classes.prev_issue}>
+    <button className={classes.prev_issue_btn} onClick={getPrevIssue}>
       <span className={classes.arrow_left} />
     </button>
   )
 }
 
-export default PrevIssueButton
+export default PrevIssueBtn

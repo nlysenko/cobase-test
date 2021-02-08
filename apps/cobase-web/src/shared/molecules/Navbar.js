@@ -9,7 +9,8 @@ import { NavLink } from 'react-router-dom'
 import { createUseStyles } from 'react-jss'
 
 import ShowMoreLink from 'shared/atoms/ShowMoreLink'
-import ToggleSideBarBtn from 'shared/atoms/ToggleSideBarBtn'
+
+import ToggleSideBarBtn from 'shared/buttons/ToggleSideBarBtn'
 
 import playAudioMelody from 'shared/audio/playAudioMelody'
 import OpenNewPageMelody from 'assets/mp3/open-page.mp3'

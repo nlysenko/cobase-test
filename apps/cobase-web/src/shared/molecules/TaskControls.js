@@ -7,8 +7,8 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 
-import CompleteButton from 'shared/atoms/CompleteButton'
-import PauseTaskButton from 'shared/atoms/PauseTaskButton'
+import CompleteBtn from 'shared/buttons/CompleteBtn'
+import PauseTaskBtn from 'shared/buttons/PauseTaskBtn'
 
 import { ReactComponent as CreateIcon } from 'assets/svg/create.svg'
 import { ReactComponent as ShareIcon } from 'assets/svg/share.svg'
@@ -17,9 +17,16 @@ import { NepalColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
   task_controls: {
-    order: '-1',
+    order: '0',
     display: 'flex',
     alignItems: 'center',
+    paddingTop: 23,
+
+    '@media (max-width: 767px)': {
+      order: '6',
+      paddingTop: 51,
+      justifyContent: 'center',
+    },
   },
 
   or: {
@@ -31,6 +38,10 @@ const useStyles = createUseStyles({
   edits: {
     flexGrow: 1,
     textAlign: 'right',
+
+    '@media (max-width: 767px)': {
+      display: 'none',
+    },
   },
 
   create_icon: {
@@ -49,11 +60,11 @@ const TaskControls = () => {
 
   return (
     <div className={classes.task_controls}>
-      <CompleteButton />
+      <CompleteBtn />
 
       <span className={classes.or}>or</span>
 
-      <PauseTaskButton />
+      <PauseTaskBtn />
 
       <div className={classes.edits}>
         <i className={classes.create_icon}>

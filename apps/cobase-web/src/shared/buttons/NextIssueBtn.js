@@ -1,6 +1,6 @@
 /**
  *
- * NextIssueButton
+ * NextIssueBtn
  *
  */
 
@@ -14,7 +14,7 @@ import {
 } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  next_issue: {
+  next_issue_btn: {
     height: '100%',
     width: 131,
     display: 'flex',
@@ -45,7 +45,7 @@ const useStyles = createUseStyles({
     },
   },
 
-  name: {
+  title: {
     fontSize: 13,
     color: NepalColor,
     paddingRight: 15,
@@ -60,16 +60,17 @@ const useStyles = createUseStyles({
   },
 })
 
-const NextIssueButton = () => {
-  const classes = useStyles()
+const NextIssueBtn = (props) => {
+  const { getNextIssue } = props
 
+  const classes = useStyles()
   return (
-    <button className={classes.next_issue}>
-      <span className={classes.name}>Next issue</span>
+    <button className={classes.next_issue_btn} onClick={getNextIssue}>
+      <span className={classes.title}>Next issue</span>
 
       <span className={classes.arrow_right} />
     </button>
   )
 }
 
-export default NextIssueButton
+export default NextIssueBtn

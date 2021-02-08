@@ -1,6 +1,6 @@
 /**
  *
- * CompleteButton
+ * CompleteBtn
  *
  */
 
@@ -45,7 +45,7 @@ const useStyles = createUseStyles({
   },
 })
 
-const CompleteButton = () => {
+const CompleteBtn = () => {
   const classes = useStyles()
 
   return (
@@ -57,4 +57,4 @@ const CompleteButton = () => {
   )
 }
 
-export default CompleteButton
+export default CompleteBtn

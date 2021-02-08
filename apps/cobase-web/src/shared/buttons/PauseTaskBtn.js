@@ -1,6 +1,6 @@
 /**
  *
- * PauseTaskButton
+ * PauseTaskBtn
  *
  */
 
@@ -38,7 +38,7 @@ const useStyles = createUseStyles({
     marginRight: 2,
   },
 })
-const PauseTaskButton = () => {
+const PauseTaskBtn = () => {
   const classes = useStyles()
 
   return (
@@ -51,4 +51,4 @@ const PauseTaskButton = () => {
   )
 }
 
-export default PauseTaskButton
+export default PauseTaskBtn

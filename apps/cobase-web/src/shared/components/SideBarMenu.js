@@ -1,6 +1,6 @@
 /**
  *
- * Menu
+ * SideBarMenu
  *
  */
 
@@ -65,7 +65,7 @@ const useStyles = createUseStyles({
   },
 })
 
-const Menu = () => {
+const SideBarMenu = () => {
   const classes = useStyles()
 
   return (
@@ -164,4 +164,4 @@ const Menu = () => {
   )
 }
 
-export default Menu
+export default SideBarMenu
