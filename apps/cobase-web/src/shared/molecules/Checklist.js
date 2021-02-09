@@ -9,6 +9,9 @@ import { createUseStyles } from 'react-jss'
 
 import AddBtn from 'shared/buttons/AddBtn'
 
+import playAudioMelody from 'shared/audio/playAudioMelody.js'
+import subtaskCheckedAudio from 'assets/mp3/checkbox-checked.mp3'
+
 import {
   BlackSqueezeColor,
   RhinoColor,
@@ -83,6 +86,7 @@ const Checklist = (props) => {
               className={classes.subtask}
               type="checkbox"
               id={`subtask_${i}`}
+              onClick={() => playAudioMelody(subtaskCheckedAudio)}
             />
 
             <label className={classes.name} htmlFor={`subtask_${i}`}>
