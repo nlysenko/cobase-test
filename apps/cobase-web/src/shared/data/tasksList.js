@@ -1,6 +1,6 @@
 /**
  *
- * tasks
+ * tasksList
  *
  */
 
@@ -14,7 +14,7 @@ import Gallery3 from 'assets/img/gallery-3.jpg'
 import Gallery4 from 'assets/img/gallery-4.jpg'
 import Gallery5 from 'assets/img/gallery-5.jpg'
 
-const tasks = [
+const tasksList = [
   {
     name: 'Fix bathroom walls',
 
@@ -46,4 +46,4 @@ const tasks = [
   },
 ]
 
-export default tasks
+export default tasksList

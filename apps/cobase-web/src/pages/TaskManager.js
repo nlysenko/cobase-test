@@ -18,10 +18,11 @@ import Checklist from 'shared/molecules/Checklist'
 import PrevIssueBtn from 'shared/buttons/PrevIssueBtn'
 import NextIssueBtn from 'shared/buttons/NextIssueBtn'
 
-import tasks from 'shared/data/tasks.js'
+import tasksList from 'shared/data/tasksList.js'
 
 import playAudioMelody from 'shared/audio/playAudioMelody'
 import toggleIssueAudio from 'assets/mp3/toggle-issue.mp3'
+import toggleIssueFalseAudio from 'assets/mp3/toggle-issue-false.mp3'
 
 import { BotticelliColor } from 'shared/styles/colors'
 
@@ -59,18 +60,31 @@ const TaskManager = () => {
     document.title = 'Task Manager | CoBase'
   })
 
-  const [task, setTask] = useState(tasks[0])
+  const [task, setTask] = useState(tasksList[0])
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    setTask(tasksList[count])
+  }, [count])
 
   const nextIssue = () => {
-    playAudioMelody(toggleIssueAudio)
+    if (tasksList.length - 1 > count) {
+      setCount(count + 1)
 
-    setTask(tasks[1])
+      playAudioMelody(toggleIssueAudio)
+    } else {
+      playAudioMelody(toggleIssueFalseAudio)
+    }
   }
 
   const prevIssue = () => {
-    playAudioMelody(toggleIssueAudio)
+    if (count !== 0) {
+      setCount(count - 1)
 
-    setTask(tasks[0])
+      playAudioMelody(toggleIssueAudio)
+    } else {
+      playAudioMelody(toggleIssueFalseAudio)
+    }
   }
 
   const classes = useStyles()
