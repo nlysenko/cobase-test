@@ -71,7 +71,11 @@ const Gallery = (props) => {
       <ul className={classes.images_list}>
         {arr.map((img, i) => (
           <li className={classes.item} key={i}>
-            <img className={classes.image} src={img} alt="gallery" />
+            <img
+              className={classes.image}
+              src={process.env.PUBLIC_URL + img}
+              alt="gallery"
+            />
           </li>
         ))}
       </ul>

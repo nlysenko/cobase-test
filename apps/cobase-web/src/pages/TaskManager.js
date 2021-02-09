@@ -18,7 +18,7 @@ import Checklist from 'shared/molecules/Checklist'
 import PrevIssueBtn from 'shared/buttons/PrevIssueBtn'
 import NextIssueBtn from 'shared/buttons/NextIssueBtn'
 
-import tasksList from 'shared/data/tasksList.js'
+import tasks from 'app/tasks.json'
 
 import playAudioMelody from 'shared/audio/playAudioMelody'
 import toggleIssueAudio from 'assets/mp3/toggle-issue.mp3'
@@ -60,15 +60,15 @@ const TaskManager = () => {
     document.title = 'Task Manager | CoBase'
   })
 
-  const [task, setTask] = useState(tasksList[0])
+  const [task, setTask] = useState(tasks[0])
   const [count, setCount] = useState(0)
 
   useEffect(() => {
-    setTask(tasksList[count])
+    setTask(tasks[count])
   }, [count])
 
   const nextIssue = () => {
-    if (tasksList.length - 1 > count) {
+    if (tasks.length - 1 > count) {
       setCount(count + 1)
 
       playAudioMelody(toggleIssueAudio)

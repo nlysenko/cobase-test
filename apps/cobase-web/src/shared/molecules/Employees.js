@@ -46,7 +46,7 @@ const Employees = (props) => {
           <li className={classes.employee} key={i}>
             <img
               className={classes.employee_avatar}
-              src={employee}
+              src={process.env.PUBLIC_URL + employee}
               alt="avatar"
             />
           </li>
