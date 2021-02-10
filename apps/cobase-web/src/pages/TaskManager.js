@@ -8,6 +8,8 @@ import React, { useEffect, useState } from 'react'
 import { createUseStyles } from 'react-jss'
 import { connect } from 'react-redux'
 
+import { initTask, toggleTask } from 'app/redux/actions'
+
 import TaskProgress from 'shared/molecules/TaskProgress'
 import TaskControls from 'shared/molecules/TaskControls'
 import TaskDescription from 'shared/molecules/TaskDescription'
@@ -55,17 +57,19 @@ const useStyles = createUseStyles({
 })
 
 const TaskManager = (props) => {
+  const { tasks, toggleTask } = props
+
   useEffect(() => {
     document.title = 'Task Manager | CoBase'
   })
-
-  const { tasks } = props
 
   const [count, setCount] = useState(0)
 
   const nextIssue = () => {
     if (tasks.length !== 0 && tasks.length - 1 > count) {
       setCount(count + 1)
+
+      toggleTask(count + 1)
 
       playAudioMelody(toggleIssueAudio)
     } else {
@@ -76,6 +80,8 @@ const TaskManager = (props) => {
   const prevIssue = () => {
     if (tasks.length !== 0 && count !== 0) {
       setCount(count - 1)
+
+      toggleTask(count - 1)
 
       playAudioMelody(toggleIssueAudio)
     } else {
@@ -121,4 +127,8 @@ const mapStateToProps = function(state) {
   }
 }
 
-export default connect(mapStateToProps)(TaskManager)
+const mapDispatchToProps = {
+  toggleTask: toggleTask,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskManager)
