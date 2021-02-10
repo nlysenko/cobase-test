@@ -6,15 +6,12 @@
 
 import update from 'immutability-helper'
 
-import { INIT_TASK, TOGGLE_TASK, TOGGLE_SUBTASK } from './constans'
+import { TOGGLE_TASK, TOGGLE_SUBTASK } from './constans'
 
 import initialState from './initialState'
 
 const rootReduser = (state = initialState, action) => {
   switch (action.type) {
-    case INIT_TASK:
-      return Object.assign({}, state, { task: state.tasks[0] })
-
     case TOGGLE_TASK:
       const { count } = action.payload
 

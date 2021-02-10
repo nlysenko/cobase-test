@@ -6,9 +6,6 @@
 
 import React, { useState, useEffect } from 'react'
 import { createUseStyles } from 'react-jss'
-import { connect } from 'react-redux'
-
-import { initTask } from 'app/redux/actions'
 
 import ToolBar from 'components/ToolBar/ToolBar'
 import SideBar from 'components/SideBar/SideBar'
@@ -33,12 +30,6 @@ const useStyles = createUseStyles({
 })
 
 const Main = (props) => {
-  const { initTask } = props
-
-  useEffect(() => {
-    initTask()
-  })
-
   const [sideBarOpen, setSideBarOpen] = useState(window.innerWidth >= 768)
 
   useEffect(() => {
@@ -72,8 +63,4 @@ const Main = (props) => {
   )
 }
 
-const mapDispatchToProps = {
-  initTask: initTask,
-}
-
-export default connect(null, mapDispatchToProps)(Main)
+export default Main

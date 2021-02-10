@@ -4,13 +4,7 @@
  *
  */
 
-import { INIT_TASK, TOGGLE_TASK, TOGGLE_SUBTASK } from './constans'
-
-export const initTask = () => {
-  return {
-    type: INIT_TASK,
-  }
-}
+import { TOGGLE_TASK, TOGGLE_SUBTASK } from './constans'
 
 export const toggleTask = (count) => {
   return {

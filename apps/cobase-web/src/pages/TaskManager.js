@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react'
 import { createUseStyles } from 'react-jss'
 import { connect } from 'react-redux'
 
-import { initTask, toggleTask } from 'app/redux/actions'
+import { toggleTask } from 'app/redux/actions'
 
 import TaskProgress from 'shared/molecules/TaskProgress'
 import TaskControls from 'shared/molecules/TaskControls'
@@ -57,7 +57,7 @@ const useStyles = createUseStyles({
 })
 
 const TaskManager = (props) => {
-  const { tasks, toggleTask } = props
+  const { task, tasks, toggleTask } = props
 
   useEffect(() => {
     document.title = 'Task Manager | CoBase'
@@ -104,18 +104,15 @@ const TaskManager = (props) => {
       <main className={classes.page_content}>
         <TaskControls />
 
-        <TaskDescription
-          name={tasks[count].name}
-          description={tasks[count].description}
-        />
+        <TaskDescription name={task.name} description={task.description} />
 
-        <Employees employees={tasks[count].employees} />
+        <Employees employees={task.employees} />
 
-        <Tags arr={tasks[count].tags} />
+        <Tags arr={task.tags} />
 
-        <Gallery arr={tasks[count].gallery} />
+        <Gallery arr={task.gallery} />
 
-        <Checklist subtasks={tasks[count].subtasks} taskId={tasks[count].id} />
+        <Checklist subtasks={task.subtasks} taskId={task.id} />
       </main>
     </div>
   )
@@ -123,6 +120,7 @@ const TaskManager = (props) => {
 
 const mapStateToProps = function(state) {
   return {
+    task: state.task,
     tasks: state.tasks,
   }
 }
