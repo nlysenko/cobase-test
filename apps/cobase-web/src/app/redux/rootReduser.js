@@ -4,7 +4,7 @@
  *
  */
 
-// import update from 'immutability-helper'
+import update from 'immutability-helper'
 
 import { TOGGLE_SUBTASK } from './constans'
 
@@ -16,16 +16,22 @@ const rootReduser = (state = initialState, action) => {
       const { taskId, subTaskId } = action.payload
 
       const taskIndex = state.tasks.findIndex((task) => task.id === taskId)
+
       const subTaskIndex = state.tasks[taskIndex].subtasks.findIndex(
         (subtask) => subtask.id === subTaskId
       )
 
-      const arr = [...state.tasks]
-
-      arr[taskIndex].subtasks[subTaskIndex].completed = !arr[taskIndex]
-        .subtasks[subTaskIndex].completed
-
-      return Object.assign({}, { tasks: arr })
+      return update(state, {
+        tasks: {
+          [taskIndex]: {
+            subtasks: {
+              [subTaskIndex]: {
+                $toggle: ['completed'],
+              },
+            },
+          },
+        },
+      })
 
     default:
       return state
