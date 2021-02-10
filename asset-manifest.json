@@ -1,21 +1,17 @@
 {
   "files": {
-    "main.js": "/cobase-test/static/js/main.5eac60fd.chunk.js",
-    "main.js.map": "/cobase-test/static/js/main.5eac60fd.chunk.js.map",
-    "runtime-main.js": "/cobase-test/static/js/runtime-main.5292e7ef.js",
-    "runtime-main.js.map": "/cobase-test/static/js/runtime-main.5292e7ef.js.map",
-    "static/js/2.78c03a62.chunk.js": "/cobase-test/static/js/2.78c03a62.chunk.js",
-    "static/js/2.78c03a62.chunk.js.map": "/cobase-test/static/js/2.78c03a62.chunk.js.map",
+    "main.js": "/cobase-test/static/js/main.5254916d.chunk.js",
+    "main.js.map": "/cobase-test/static/js/main.5254916d.chunk.js.map",
+    "runtime-main.js": "/cobase-test/static/js/runtime-main.c8c19d12.js",
+    "runtime-main.js.map": "/cobase-test/static/js/runtime-main.c8c19d12.js.map",
+    "static/js/2.189468cc.chunk.js": "/cobase-test/static/js/2.189468cc.chunk.js",
+    "static/js/2.189468cc.chunk.js.map": "/cobase-test/static/js/2.189468cc.chunk.js.map",
     "index.html": "/cobase-test/index.html",
-    "static/js/2.78c03a62.chunk.js.LICENSE.txt": "/cobase-test/static/js/2.78c03a62.chunk.js.LICENSE.txt",
+    "static/js/2.189468cc.chunk.js.LICENSE.txt": "/cobase-test/static/js/2.189468cc.chunk.js.LICENSE.txt",
     "static/media/blue-complete.b52a4c29.svg": "/cobase-test/static/media/blue-complete.b52a4c29.svg",
+    "static/media/checkbox-checked.bfd8551f.mp3": "/cobase-test/static/media/checkbox-checked.bfd8551f.mp3",
     "static/media/complete-icon.617e3196.svg": "/cobase-test/static/media/complete-icon.617e3196.svg",
     "static/media/create.a74ac6d4.svg": "/cobase-test/static/media/create.a74ac6d4.svg",
-    "static/media/gallery-1.d10129d2.jpg": "/cobase-test/static/media/gallery-1.d10129d2.jpg",
-    "static/media/gallery-2.e6d117b7.jpg": "/cobase-test/static/media/gallery-2.e6d117b7.jpg",
-    "static/media/gallery-3.047632e9.jpg": "/cobase-test/static/media/gallery-3.047632e9.jpg",
-    "static/media/gallery-4.1a312e66.jpg": "/cobase-test/static/media/gallery-4.1a312e66.jpg",
-    "static/media/gallery-5.4c4ede67.jpg": "/cobase-test/static/media/gallery-5.4c4ede67.jpg",
     "static/media/globe.b2425527.svg": "/cobase-test/static/media/globe.b2425527.svg",
     "static/media/green-task.b5fef600.svg": "/cobase-test/static/media/green-task.b5fef600.svg",
     "static/media/open-page.d79a2516.mp3": "/cobase-test/static/media/open-page.d79a2516.mp3",
@@ -24,16 +20,14 @@
     "static/media/search-icon.228077b2.svg": "/cobase-test/static/media/search-icon.228077b2.svg",
     "static/media/settings-icon.48ae0e0a.svg": "/cobase-test/static/media/settings-icon.48ae0e0a.svg",
     "static/media/share.bac4f324.svg": "/cobase-test/static/media/share.bac4f324.svg",
+    "static/media/toggle-issue-false.51d0cde7.mp3": "/cobase-test/static/media/toggle-issue-false.51d0cde7.mp3",
     "static/media/toggle-issue.f01ac587.mp3": "/cobase-test/static/media/toggle-issue.f01ac587.mp3",
-    "static/media/user-1.d39b89ea.png": "/cobase-test/static/media/user-1.d39b89ea.png",
-    "static/media/user-2.3a984c02.png": "/cobase-test/static/media/user-2.3a984c02.png",
-    "static/media/user-3.f4a1a442.png": "/cobase-test/static/media/user-3.f4a1a442.png",
     "static/media/user.6b0d5f78.png": "/cobase-test/static/media/user.6b0d5f78.png",
     "static/media/yellow-assign.db5de1a1.svg": "/cobase-test/static/media/yellow-assign.db5de1a1.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.5292e7ef.js",
-    "static/js/2.78c03a62.chunk.js",
-    "static/js/main.5eac60fd.chunk.js"
+    "static/js/runtime-main.c8c19d12.js",
+    "static/js/2.189468cc.chunk.js",
+    "static/js/main.5254916d.chunk.js"
   ]
 }
