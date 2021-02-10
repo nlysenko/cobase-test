@@ -6,6 +6,9 @@
 
 import React from 'react'
 import { createUseStyles } from 'react-jss'
+import { connect } from 'react-redux'
+
+import { toggleSubtask } from 'app/redux/actions'
 
 import AddBtn from 'shared/buttons/AddBtn'
 
@@ -68,7 +71,15 @@ const useStyles = createUseStyles({
 })
 
 const Checklist = (props) => {
-  const { subtasks } = props
+  const { subtasks, taskId } = props
+
+  const switchSubtask = (event) => {
+    const subtaskId = event.target.id
+
+    playAudioMelody(subtaskCheckedAudio)
+
+    return props.toggleSubtask(taskId, subtaskId)
+  }
 
   const classes = useStyles()
   return (
@@ -85,12 +96,13 @@ const Checklist = (props) => {
             <input
               className={classes.subtask}
               type="checkbox"
-              id={`subtask_${i}`}
-              onClick={() => playAudioMelody(subtaskCheckedAudio)}
+              id={subtask.id}
+              onChange={switchSubtask}
+              checked={subtask.completed}
             />
 
-            <label className={classes.name} htmlFor={`subtask_${i}`}>
-              {subtask}
+            <label className={classes.name} htmlFor={subtask.id}>
+              {subtask.name}
             </label>
           </li>
         ))}
@@ -99,4 +111,14 @@ const Checklist = (props) => {
   )
 }
 
-export default Checklist
+const mapDispatchToProps = {
+  toggleSubtask: toggleSubtask,
+}
+
+const mapStateToProps = function(state) {
+  return {
+    tasks: state.tasks,
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checklist)

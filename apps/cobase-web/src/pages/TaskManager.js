@@ -6,6 +6,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { createUseStyles } from 'react-jss'
+import { connect } from 'react-redux'
 
 import TaskProgress from 'shared/molecules/TaskProgress'
 import TaskControls from 'shared/molecules/TaskControls'
@@ -17,8 +18,6 @@ import Checklist from 'shared/molecules/Checklist'
 
 import PrevIssueBtn from 'shared/buttons/PrevIssueBtn'
 import NextIssueBtn from 'shared/buttons/NextIssueBtn'
-
-import tasks from 'app/tasks.json'
 
 import playAudioMelody from 'shared/audio/playAudioMelody'
 import toggleIssueAudio from 'assets/mp3/toggle-issue.mp3'
@@ -55,20 +54,17 @@ const useStyles = createUseStyles({
   },
 })
 
-const TaskManager = () => {
+const TaskManager = (props) => {
   useEffect(() => {
     document.title = 'Task Manager | CoBase'
   })
 
-  const [task, setTask] = useState(tasks[0])
+  const { tasks } = props
+
   const [count, setCount] = useState(0)
 
-  useEffect(() => {
-    setTask(tasks[count])
-  }, [count])
-
   const nextIssue = () => {
-    if (tasks.length - 1 > count) {
+    if (tasks.length !== 0 && tasks.length - 1 > count) {
       setCount(count + 1)
 
       playAudioMelody(toggleIssueAudio)
@@ -78,7 +74,7 @@ const TaskManager = () => {
   }
 
   const prevIssue = () => {
-    if (count !== 0) {
+    if (tasks.length !== 0 && count !== 0) {
       setCount(count - 1)
 
       playAudioMelody(toggleIssueAudio)
@@ -102,18 +98,27 @@ const TaskManager = () => {
       <main className={classes.page_content}>
         <TaskControls />
 
-        <TaskDescription name={task.name} description={task.description} />
+        <TaskDescription
+          name={tasks[count].name}
+          description={tasks[count].description}
+        />
 
-        <Employees employees={task.employees} />
+        <Employees employees={tasks[count].employees} />
 
-        <Tags arr={task.tags} />
+        <Tags arr={tasks[count].tags} />
 
-        <Gallery arr={task.gallery} />
+        <Gallery arr={tasks[count].gallery} />
 
-        <Checklist subtasks={task.subtasks} />
+        <Checklist subtasks={tasks[count].subtasks} taskId={tasks[count].id} />
       </main>
     </div>
   )
 }
 
-export default TaskManager
+const mapStateToProps = function(state) {
+  return {
+    tasks: state.tasks,
+  }
+}
+
+export default connect(mapStateToProps)(TaskManager)
