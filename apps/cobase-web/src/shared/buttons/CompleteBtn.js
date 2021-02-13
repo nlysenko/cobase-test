@@ -45,11 +45,12 @@ const useStyles = createUseStyles({
   },
 })
 
-const CompleteBtn = () => {
-  const classes = useStyles()
+const CompleteBtn = (props) => {
+  const { completeTask } = props
 
+  const classes = useStyles()
   return (
-    <button className={classes.complete_btn}>
+    <button className={classes.complete_btn} onClick={completeTask}>
       <CompleteIcon />
 
       <span className={classes.title}>Complete</span>

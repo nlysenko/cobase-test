@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { createUseStyles } from 'react-jss'
 
 import {
@@ -37,19 +37,17 @@ const useStyles = createUseStyles({
     borderRadius: 120,
   },
 
-  inprogress: {
+  inprocess: {
     color: PortageColor,
     border: [1, 'solid', PortageColor],
   },
 
   paused: {
-    composes: '$progress',
     color: FiordColor,
     border: [1, 'solid', FiordColor],
   },
 
   completed: {
-    composes: '$progress',
     color: AppleColor,
     border: [1, 'solid', AppleColor],
   },
@@ -65,13 +63,38 @@ const useStyles = createUseStyles({
   },
 })
 
-const TaskProgress = () => {
-  const classes = useStyles()
+const TaskProgress = (props) => {
+  const { subtasks, taskId, taskPaused } = props
 
+  const [progress, setProgress] = useState('In process')
+
+  useEffect(() => {
+    const currentSubtasks = subtasks.length
+    const completedSubtasks = subtasks.filter((subtask) => subtask.completed)
+      .length
+
+    if (taskPaused) {
+      setProgress('Paused')
+    } else if (!taskPaused && currentSubtasks === completedSubtasks) {
+      setProgress('Completed')
+    } else {
+      setProgress('In process')
+    }
+  }, [subtasks, taskPaused])
+
+  const classes = useStyles()
   return (
     <div className={classes.wrapper}>
-      <div className={`${classes.progress} ${classes.inprogress}`}>
-        <span className={classes.name}>In Progress</span>
+      <div
+        className={`${classes.progress} ${
+          progress === 'In process'
+            ? classes.inprocess
+            : progress === 'Completed'
+            ? classes.completed
+            : classes.paused
+        }`}
+      >
+        <span className={classes.name}>{progress}</span>
       </div>
 
       <span className={classes.time}>15m ago</span>

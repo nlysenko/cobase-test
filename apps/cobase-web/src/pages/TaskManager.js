@@ -59,6 +59,20 @@ const useStyles = createUseStyles({
 const TaskManager = (props) => {
   const { task, tasks, toggleTask } = props
 
+  const [taskPaused, setTaskPaused] = useState(false)
+
+  const toggleProcess = () => {
+    setTaskPaused(!taskPaused)
+  }
+
+  const completeTask = () => {
+    setTaskPaused(false)
+  }
+
+  useEffect(() => {
+    setTaskPaused(false)
+  }, [task])
+
   useEffect(() => {
     document.title = 'Task Manager | CoBase'
   })
@@ -90,11 +104,14 @@ const TaskManager = (props) => {
   }
 
   const classes = useStyles()
-
   return (
     <div className={classes.task_manager}>
       <header className={classes.header}>
-        <TaskProgress />
+        <TaskProgress
+          subtasks={task.subtasks}
+          taskId={task.id}
+          taskPaused={taskPaused}
+        />
 
         <PrevIssueBtn getPrevIssue={prevIssue} />
 
@@ -102,7 +119,12 @@ const TaskManager = (props) => {
       </header>
 
       <main className={classes.page_content}>
-        <TaskControls />
+        <TaskControls
+          taskId={task.id}
+          taskPaused={taskPaused}
+          toggleProcess={toggleProcess}
+          completeTask={completeTask}
+        />
 
         <TaskDescription name={task.name} description={task.description} />
 
