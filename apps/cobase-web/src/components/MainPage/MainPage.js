@@ -22,7 +22,7 @@ const useStyles = createUseStyles({
 
   sidebar_open_inner: {
     width: 1920,
-    height: 1200,
+    height: 960,
     backgroundColor: BgColor,
     padding: {
       top: 72,
@@ -33,7 +33,7 @@ const useStyles = createUseStyles({
 
   sidebar_closed_inner: {
     width: 1920,
-    height: 1200,
+    minHeight: 1200,
     backgroundColor: BgColor,
     padding: {
       top: 72,
@@ -54,7 +54,8 @@ const useStyles = createUseStyles({
 
   sidebar_open_page: {
     width: 780,
-    height: 828,
+    minHeight: 828,
+    paddingBottom: 24,
     backgroundColor: WhiteColor,
     border: [1, 'solid', BaliHaiColor],
     borderRadius: 4,
@@ -63,7 +64,8 @@ const useStyles = createUseStyles({
 
   sidebar_closed_page: {
     width: 780,
-    height: 828,
+    minHeight: 828,
+    paddingBottom: 24,
     backgroundColor: WhiteColor,
     border: [1, 'solid', BaliHaiColor],
     borderRadius: 4,

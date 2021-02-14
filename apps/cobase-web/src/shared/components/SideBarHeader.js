@@ -1,6 +1,6 @@
 /**
  *
- * Header
+ * SideBarHeader
  *
  */
 
@@ -22,7 +22,7 @@ const useStyles = createUseStyles({
   },
 })
 
-const Header = () => {
+const SideBarHeader = () => {
   const classes = useStyles()
 
   return (
@@ -32,4 +32,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default SideBarHeader

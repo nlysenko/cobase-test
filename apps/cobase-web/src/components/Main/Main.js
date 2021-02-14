@@ -29,7 +29,7 @@ const useStyles = createUseStyles({
   },
 })
 
-const Main = () => {
+const Main = (props) => {
   const [sideBarOpen, setSideBarOpen] = useState(window.innerWidth >= 768)
 
   useEffect(() => {

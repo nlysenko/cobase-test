@@ -8,10 +8,11 @@ import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { createUseStyles } from 'react-jss'
 
-import Header from 'shared/molecules/Header'
-import Menu from 'shared/molecules/Menu'
+import SideBarHeader from 'shared/components/SideBarHeader'
+import SideBarMenu from 'shared/components/SideBarMenu'
+import SideBarFooter from 'shared/components/SideBarFooter'
+
 import Progress from 'shared/molecules/Progress'
-import Footer from 'shared/molecules/Footer'
 
 import { RhinoColor } from 'shared/styles/colors'
 
@@ -56,13 +57,13 @@ const SideBar = (props) => {
         sideBarIsOpen ? classes.sidebar_open : ''
       }`}
     >
-      <Header />
+      <SideBarHeader />
 
-      <Menu />
+      <SideBarMenu />
 
       {progressIsOpen ? <Progress /> : false}
 
-      <Footer />
+      <SideBarFooter />
     </div>
   )
 }

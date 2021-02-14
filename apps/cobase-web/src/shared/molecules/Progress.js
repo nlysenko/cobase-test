@@ -5,6 +5,7 @@
  */
 
 import React from 'react'
+import { connect } from 'react-redux'
 import { createUseStyles } from 'react-jss'
 
 import {
@@ -41,7 +42,7 @@ const useStyles = createUseStyles({
     alignItems: 'center',
   },
 
-  progressbar_valuemax: {
+  task_progressbar: {
     display: 'inline-block',
     width: 161,
     height: 6,
@@ -49,22 +50,21 @@ const useStyles = createUseStyles({
     backgroundColor: WaikawaGrayColor,
   },
 
-  progressbar_valuemin: {
-    composes: '$progressbar_valuemax',
+  overal_progressbar: {
+    composes: '$task_progressbar',
     backgroundColor: FrenchPassColor,
   },
 
-  progress_valuemax: {
+  task_progress: {
     height: '100%',
-    width: 130,
     backgroundColor: PortageColor,
     borderRadius: 100,
   },
 
-  progress_valuemin: {
-    composes: '$progress_valuemax',
+  overal_progress: {
+    composes: '$task_progress',
     backgroundColor: JavaColor,
-    width: 80,
+    width: 0,
   },
 
   indicator: {
@@ -74,9 +74,38 @@ const useStyles = createUseStyles({
   },
 })
 
-const Progress = () => {
-  const classes = useStyles()
+const Progress = (props) => {
+  const { task, tasks } = props
 
+  const getNumberCompletedSubtasks = (arr) => {
+    return arr.reduce((sum, subtask) => {
+      return sum + subtask.completed
+    }, 0)
+  }
+
+  const overallSubtasks = tasks.reduce((arr, task) => {
+    return arr.concat(task.subtasks)
+  }, [])
+
+  const currentSubtasks = task.subtasks
+
+  const taskProgress =
+    (getNumberCompletedSubtasks(currentSubtasks) / currentSubtasks.length) * 100
+
+  const projectProgress =
+    (getNumberCompletedSubtasks(overallSubtasks) / overallSubtasks.length) * 100
+
+  const taskProgressStyle = {
+    width: taskProgress + '%',
+    transition: 'all 0.5s ease-out',
+  }
+
+  const projectProgressStyle = {
+    width: projectProgress + '%',
+    transition: 'all 0.5s ease-out',
+  }
+
+  const classes = useStyles()
   return (
     <div className={classes.wrapper}>
       <h3 className={classes.title}>PROGRESS</h3>
@@ -84,24 +113,34 @@ const Progress = () => {
       <span className={classes.name}>Task</span>
 
       <div className={classes.progressbar_wrapper}>
-        <div className={classes.progressbar_valuemax}>
-          <div className={classes.progress_valuemax} id="task" />
+        <div className={classes.task_progressbar}>
+          <div className={classes.task_progress} style={taskProgressStyle} />
         </div>
 
-        <span className={classes.indicator}>70</span>
+        <span className={classes.indicator}>{+taskProgress.toFixed(2)}</span>
       </div>
 
       <span className={classes.name}>Overal project</span>
 
       <div className={classes.progressbar_wrapper}>
-        <div className={classes.progressbar_valuemin}>
-          <div className={classes.progress_valuemin} id="project" />
+        <div className={classes.overal_progressbar}>
+          <div
+            className={classes.overal_progress}
+            style={projectProgressStyle}
+          />
         </div>
 
-        <span className={classes.indicator}>23</span>
+        <span className={classes.indicator}>{+projectProgress.toFixed(2)}</span>
       </div>
     </div>
   )
 }
 
-export default Progress
+const mapStateToProps = function(state) {
+  return {
+    tasks: state.tasks,
+    task: state.task,
+  }
+}
+
+export default connect(mapStateToProps)(Progress)

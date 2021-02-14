@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Fix bathroom walls",
+    "description": "Bathroom walls needs some fixing. Descriptions can be longer than only one sentence. Descriptions can be longer than only one sentence. Descriptions can be longer than only one sentence.",
+    "employees": ["/img/user-1.png", "/img/user-2.png", "/img/user-3.png"],
+    "tags": ["Thirdfloor", "bathroom", "tilework"],
+    "gallery": [
+      "/img/gallery-1.jpg",
+      "/img/gallery-2.jpg",
+      "/img/gallery-3.jpg",
+      "/img/gallery-4.jpg",
+      "/img/gallery-5.jpg"
+    ],
+    "subtasks": ["Install water isolation", "Prepare for tiling"]
+  },
+  {
+    "name": "Fix bedroom floor",
+    "description": "Bedroom floor needs some fixing. Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+    "employees": ["/img/user-1.png", "/img/user-2.png"],
+    "tags": ["Firstfloor", "bathroom", "tilework", "insulation", "parquet"],
+    "gallery": [
+      "/img/gallery-2.jpg",
+      "/img/gallery-4.jpg",
+      "/img/gallery-5.jpg"
+    ],
+    "subtasks": ["Fix insulation", "Lay parquet", "Put a tile"]
+  }
+]
