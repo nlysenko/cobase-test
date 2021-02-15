@@ -6,6 +6,14 @@
 
 import React from 'react'
 import { createUseStyles } from 'react-jss'
+import { connect } from 'react-redux'
+
+import { setTaskCompleted } from 'app/redux/actions'
+
+import getNumberCompletedSubtasks from 'shared/js/getNumberCompletedSubtasks'
+
+import playAudioMelody from 'shared/audio/playAudioMelody.js'
+import taskCompletedAudio from 'assets/mp3/task-completed.mp3'
 
 import { ReactComponent as CompleteIcon } from 'assets/svg/complete-icon.svg'
 
@@ -14,6 +22,7 @@ import {
   EmeraldColor,
   WhiteColor,
   AtlantisColor,
+  JavaColor,
 } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
@@ -35,6 +44,11 @@ const useStyles = createUseStyles({
     '&:hover': {
       background: AtlantisColor,
     },
+
+    '&:disabled': {
+      background: JavaColor,
+      cursor: 'not-allowed',
+    },
   },
 
   title: {
@@ -46,11 +60,26 @@ const useStyles = createUseStyles({
 })
 
 const CompleteBtn = (props) => {
-  const { completeTask } = props
+  const { taskIndex, tasks, setTaskCompleted } = props
+
+  const currentSubtasks = tasks[taskIndex].subtasks
+
+  const taskIsCompleted =
+    currentSubtasks.length === getNumberCompletedSubtasks(currentSubtasks)
+
+  const completeAllSubtasks = () => {
+    setTaskCompleted(taskIndex)
+
+    playAudioMelody(taskCompletedAudio)
+  }
 
   const classes = useStyles()
   return (
-    <button className={classes.complete_btn} onClick={completeTask}>
+    <button
+      className={classes.complete_btn}
+      onClick={completeAllSubtasks}
+      disabled={taskIsCompleted}
+    >
       <CompleteIcon />
 
       <span className={classes.title}>Complete</span>
@@ -58,4 +87,14 @@ const CompleteBtn = (props) => {
   )
 }
 
-export default CompleteBtn
+const mapStateToProps = function(state) {
+  return {
+    tasks: state.tasks,
+  }
+}
+
+const mapDispatchToProps = {
+  setTaskCompleted: setTaskCompleted,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CompleteBtn)

@@ -38,7 +38,7 @@ const useStyles = createUseStyles({
 const SideBar = (props) => {
   const [progressIsOpen, setProgressIsOpen] = useState(false)
 
-  const { sideBarIsOpen } = props
+  const { sideBarIsOpen, taskIndex } = props
 
   const usePageViews = () => {
     let location = useLocation()
@@ -61,7 +61,7 @@ const SideBar = (props) => {
 
       <SideBarMenu />
 
-      {progressIsOpen ? <Progress /> : false}
+      {progressIsOpen ? <Progress taskIndex={taskIndex} /> : false}
 
       <SideBarFooter />
     </div>

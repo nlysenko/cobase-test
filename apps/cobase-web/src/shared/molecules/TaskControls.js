@@ -56,12 +56,12 @@ const useStyles = createUseStyles({
 })
 
 const TaskControls = (props) => {
-  const { taskId, taskPaused, toggleProcess, completeTask } = props
+  const { taskIndex, taskPaused, toggleProcess } = props
 
   const classes = useStyles()
   return (
     <div className={classes.task_controls}>
-      <CompleteBtn completeTask={completeTask} taskId={taskId} />
+      <CompleteBtn taskIndex={taskIndex} />
 
       <span className={classes.or}>or</span>
 

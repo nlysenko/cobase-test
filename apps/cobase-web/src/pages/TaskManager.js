@@ -8,8 +8,6 @@ import React, { useEffect, useState } from 'react'
 import { createUseStyles } from 'react-jss'
 import { connect } from 'react-redux'
 
-import { toggleTask } from 'app/redux/actions'
-
 import TaskProgress from 'shared/molecules/TaskProgress'
 import TaskControls from 'shared/molecules/TaskControls'
 import TaskDescription from 'shared/molecules/TaskDescription'
@@ -20,10 +18,6 @@ import Checklist from 'shared/molecules/Checklist'
 
 import PrevIssueBtn from 'shared/buttons/PrevIssueBtn'
 import NextIssueBtn from 'shared/buttons/NextIssueBtn'
-
-import playAudioMelody from 'shared/audio/playAudioMelody'
-import toggleIssueAudio from 'assets/mp3/toggle-issue.mp3'
-import toggleIssueFalseAudio from 'assets/mp3/toggle-issue-false.mp3'
 
 import { BotticelliColor } from 'shared/styles/colors'
 
@@ -57,51 +51,22 @@ const useStyles = createUseStyles({
 })
 
 const TaskManager = (props) => {
-  const { task, tasks, toggleTask } = props
+  const { taskIndex, nextIssue, prevIssue, tasks } = props
 
+  const [task, setTask] = useState(tasks[taskIndex])
   const [taskPaused, setTaskPaused] = useState(false)
+
+  useEffect(() => {
+    setTask(tasks[taskIndex])
+  }, [taskIndex, tasks])
 
   const toggleProcess = () => {
     setTaskPaused(!taskPaused)
   }
 
-  const completeTask = () => {
-    setTaskPaused(false)
-  }
-
-  useEffect(() => {
-    setTaskPaused(false)
-  }, [task])
-
   useEffect(() => {
     document.title = 'Task Manager | CoBase'
   })
-
-  const [count, setCount] = useState(0)
-
-  const nextIssue = () => {
-    if (tasks.length !== 0 && tasks.length - 1 > count) {
-      setCount(count + 1)
-
-      toggleTask(count + 1)
-
-      playAudioMelody(toggleIssueAudio)
-    } else {
-      playAudioMelody(toggleIssueFalseAudio)
-    }
-  }
-
-  const prevIssue = () => {
-    if (tasks.length !== 0 && count !== 0) {
-      setCount(count - 1)
-
-      toggleTask(count - 1)
-
-      playAudioMelody(toggleIssueAudio)
-    } else {
-      playAudioMelody(toggleIssueFalseAudio)
-    }
-  }
 
   const classes = useStyles()
   return (
@@ -120,10 +85,9 @@ const TaskManager = (props) => {
 
       <main className={classes.page_content}>
         <TaskControls
-          taskId={task.id}
+          taskIndex={taskIndex}
           taskPaused={taskPaused}
           toggleProcess={toggleProcess}
-          completeTask={completeTask}
         />
 
         <TaskDescription name={task.name} description={task.description} />
@@ -134,7 +98,7 @@ const TaskManager = (props) => {
 
         <Gallery arr={task.gallery} />
 
-        <Checklist subtasks={task.subtasks} taskId={task.id} />
+        <Checklist subtasks={task.subtasks} taskIndex={taskIndex} />
       </main>
     </div>
   )
@@ -142,13 +106,8 @@ const TaskManager = (props) => {
 
 const mapStateToProps = function(state) {
   return {
-    task: state.task,
     tasks: state.tasks,
   }
 }
 
-const mapDispatchToProps = {
-  toggleTask: toggleTask,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TaskManager)
+export default connect(mapStateToProps)(TaskManager)

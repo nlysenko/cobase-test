@@ -6,12 +6,15 @@
 
 import React, { useState, useEffect } from 'react'
 import { createUseStyles } from 'react-jss'
+import { connect } from 'react-redux'
 
 import ToolBar from 'components/ToolBar/ToolBar'
 import SideBar from 'components/SideBar/SideBar'
 import MainPage from 'components/MainPage/MainPage'
 
-import routes from 'app/routes'
+import playAudioMelody from 'shared/audio/playAudioMelody'
+import toggleIssueAudio from 'assets/mp3/toggle-issue.mp3'
+import toggleIssueFalseAudio from 'assets/mp3/toggle-issue-false.mp3'
 
 const useStyles = createUseStyles({
   main: {
@@ -30,7 +33,7 @@ const useStyles = createUseStyles({
 })
 
 const Main = (props) => {
-  const [sideBarOpen, setSideBarOpen] = useState(window.innerWidth >= 768)
+  const { tasks } = props
 
   useEffect(() => {
     function handleResize() {
@@ -44,6 +47,29 @@ const Main = (props) => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  const [sideBarOpen, setSideBarOpen] = useState(window.innerWidth >= 768)
+  const [taskIndex, setTaskIndex] = useState(0)
+
+  const nextIssue = () => {
+    if (taskIndex + 1 in tasks) {
+      setTaskIndex(taskIndex + 1)
+
+      playAudioMelody(toggleIssueAudio)
+    } else {
+      playAudioMelody(toggleIssueFalseAudio)
+    }
+  }
+
+  const prevIssue = () => {
+    if (taskIndex - 1 in tasks) {
+      setTaskIndex(taskIndex - 1)
+
+      playAudioMelody(toggleIssueAudio)
+    } else {
+      playAudioMelody(toggleIssueFalseAudio)
+    }
+  }
+
   const toggleSideBar = () => {
     setSideBarOpen(!sideBarOpen)
   }
@@ -56,11 +82,21 @@ const Main = (props) => {
     >
       <ToolBar sideBarIsOpen={sideBarOpen} toggleSideBar={toggleSideBar} />
 
-      <SideBar sideBarIsOpen={sideBarOpen} />
+      <SideBar sideBarIsOpen={sideBarOpen} taskIndex={taskIndex} />
 
-      <MainPage sideBarIsOpen={sideBarOpen} children={routes} />
+      <MainPage
+        sideBarIsOpen={sideBarOpen}
+        taskIndex={taskIndex}
+        nextIssue={nextIssue}
+        prevIssue={prevIssue}
+      />
     </div>
   )
 }
 
-export default Main
+const mapStateToProps = function(state) {
+  return {
+    tasks: state.tasks,
+  }
+}
+export default connect(mapStateToProps)(Main)

@@ -71,14 +71,14 @@ const useStyles = createUseStyles({
 })
 
 const Checklist = (props) => {
-  const { subtasks, taskId } = props
+  const { subtasks, taskIndex, toggleSubtask } = props
 
   const switchSubtask = (event) => {
-    const subtaskId = event.target.id
+    const subTaskId = event.target.id
 
     playAudioMelody(subtaskCheckedAudio)
 
-    return props.toggleSubtask(taskId, subtaskId)
+    toggleSubtask(taskIndex, subTaskId)
   }
 
   const classes = useStyles()

@@ -8,6 +8,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createUseStyles } from 'react-jss'
 
+import getNumberCompletedSubtasks from 'shared/js/getNumberCompletedSubtasks'
+
 import {
   NepalColor,
   WhiteColor,
@@ -75,19 +77,13 @@ const useStyles = createUseStyles({
 })
 
 const Progress = (props) => {
-  const { task, tasks } = props
+  const { taskIndex, tasks } = props
 
-  const getNumberCompletedSubtasks = (arr) => {
-    return arr.reduce((sum, subtask) => {
-      return sum + subtask.completed
-    }, 0)
-  }
-
-  const overallSubtasks = tasks.reduce((arr, task) => {
+  const overallSubtasks = Object.values(tasks).reduce((arr, task) => {
     return arr.concat(task.subtasks)
   }, [])
 
-  const currentSubtasks = task.subtasks
+  const currentSubtasks = tasks[taskIndex].subtasks
 
   const taskProgress =
     (getNumberCompletedSubtasks(currentSubtasks) / currentSubtasks.length) * 100
@@ -139,7 +135,6 @@ const Progress = (props) => {
 const mapStateToProps = function(state) {
   return {
     tasks: state.tasks,
-    task: state.task,
   }
 }
 
