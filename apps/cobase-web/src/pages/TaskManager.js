@@ -87,7 +87,10 @@ const TaskManager = (props) => {
   return (
     <div className={classes.task_manager}>
       <header className={classes.header}>
-        <TaskProgress progress={task.progress} />
+        <TaskProgress
+          progress={task.progress}
+          lastUpdateTime={task.lastUpdate}
+        />
 
         <PrevIssueBtn showPrevIssue={prevIssue} />
 

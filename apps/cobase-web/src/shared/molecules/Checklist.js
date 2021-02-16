@@ -8,7 +8,7 @@ import React from 'react'
 import { createUseStyles } from 'react-jss'
 import { connect } from 'react-redux'
 
-import { toggleSubtask } from 'app/redux/actions'
+import { toggleSubtask, setLastUpdateTime } from 'app/redux/actions'
 
 import AddBtn from 'shared/buttons/AddBtn'
 
@@ -71,14 +71,22 @@ const useStyles = createUseStyles({
 })
 
 const Checklist = (props) => {
-  const { subtasks, taskIndex, toggleSubtask, taskOnPause } = props
+  const {
+    subtasks,
+    taskIndex,
+    toggleSubtask,
+    taskOnPause,
+    setLastUpdateTime,
+  } = props
 
   const switchSubtask = (event) => {
     const subTaskId = event.target.id
 
-    playAudioMelody(subtaskCheckedAudio)
-
     toggleSubtask(taskIndex, subTaskId)
+
+    setLastUpdateTime(taskIndex, Date.now())
+
+    playAudioMelody(subtaskCheckedAudio)
   }
 
   const classes = useStyles()
@@ -114,6 +122,7 @@ const Checklist = (props) => {
 
 const mapDispatchToProps = {
   toggleSubtask: toggleSubtask,
+  setLastUpdateTime: setLastUpdateTime,
 }
 
 export default connect(null, mapDispatchToProps)(Checklist)

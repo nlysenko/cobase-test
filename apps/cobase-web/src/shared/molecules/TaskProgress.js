@@ -4,8 +4,9 @@
  *
  */
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { createUseStyles } from 'react-jss'
+import humanizeDuration from 'humanize-duration'
 
 import {
   PortageColor,
@@ -64,7 +65,33 @@ const useStyles = createUseStyles({
 })
 
 const TaskProgress = (props) => {
-  const { progress } = props
+  const { progress, lastUpdateTime } = props
+
+  const shortEnglishHumanizer = humanizeDuration.humanizer({
+    units: ['m'],
+    round: true,
+    spacer: '',
+    language: 'shortEn',
+    languages: {
+      shortEn: {
+        m: () => 'm ago',
+      },
+    },
+  })
+
+  const [currentTime, setCurrentTime] = useState(Date.now())
+
+  useEffect(() => {
+    let timer = setInterval(() => tick(), 1000)
+
+    return function cleanup() {
+      clearInterval(timer)
+    }
+  })
+
+  function tick() {
+    setCurrentTime(Date.now())
+  }
 
   const classes = useStyles()
   return (
@@ -81,7 +108,9 @@ const TaskProgress = (props) => {
         <span className={classes.name}>{progress}</span>
       </div>
 
-      <span className={classes.time}>15m ago</span>
+      <span className={classes.time}>
+        {shortEnglishHumanizer(currentTime - lastUpdateTime)}
+      </span>
     </div>
   )
 }

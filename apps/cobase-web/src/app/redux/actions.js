@@ -8,6 +8,7 @@ import {
   TOGGLE_SUBTASK,
   SET_TASK_COMPLETED,
   UPDATE_TASK_PROGRESS,
+  SET_LAST_UPDATE_TIME,
 } from './constans'
 
 export const toggleSubtask = (taskIndex, subTaskId) => {
@@ -35,6 +36,16 @@ export const updateProgress = (taskIndex, progress) => {
     payload: {
       taskIndex,
       progress,
+    },
+  }
+}
+
+export const setLastUpdateTime = (taskIndex, timestamp) => {
+  return {
+    type: SET_LAST_UPDATE_TIME,
+    payload: {
+      taskIndex,
+      timestamp,
     },
   }
 }

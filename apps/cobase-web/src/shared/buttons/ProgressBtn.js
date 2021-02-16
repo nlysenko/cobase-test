@@ -8,7 +8,7 @@ import React from 'react'
 import { createUseStyles } from 'react-jss'
 import { connect } from 'react-redux'
 
-import { updateProgress } from 'app/redux/actions'
+import { updateProgress, setLastUpdateTime } from 'app/redux/actions'
 
 import playAudioMelody from 'shared/audio/playAudioMelody.js'
 import continueAudio from 'assets/mp3/continue.mp3'
@@ -50,15 +50,19 @@ const useStyles = createUseStyles({
 })
 
 const ProgressBtn = (props) => {
-  const { taskIndex, taskOnPause, updateProgress } = props
+  const { taskIndex, taskOnPause, updateProgress, setLastUpdateTime } = props
 
   const toggleProcess = () => {
     if (taskOnPause) {
       updateProgress(taskIndex, 'In process')
 
+      setLastUpdateTime(taskIndex, Date.now())
+
       playAudioMelody(continueAudio)
     } else {
       updateProgress(taskIndex, 'Paused')
+
+      setLastUpdateTime(taskIndex, Date.now())
 
       playAudioMelody(pauseAudio)
     }
@@ -78,6 +82,7 @@ const ProgressBtn = (props) => {
 
 const mapDispatchToProps = {
   updateProgress: updateProgress,
+  setLastUpdateTime: setLastUpdateTime,
 }
 
 export default connect(null, mapDispatchToProps)(ProgressBtn)

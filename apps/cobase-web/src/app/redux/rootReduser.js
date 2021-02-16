@@ -10,6 +10,7 @@ import {
   TOGGLE_SUBTASK,
   SET_TASK_COMPLETED,
   UPDATE_TASK_PROGRESS,
+  SET_LAST_UPDATE_TIME,
 } from './constans'
 
 import initialState from './initialState'
@@ -59,6 +60,15 @@ const rootReduser = (state = initialState, action) => {
         tasks: {
           [action.payload.taskIndex]: {
             progress: { $set: action.payload.progress },
+          },
+        },
+      })
+
+    case SET_LAST_UPDATE_TIME:
+      return update(state, {
+        tasks: {
+          [action.payload.taskIndex]: {
+            lastUpdate: { $set: action.payload.timestamp },
           },
         },
       })

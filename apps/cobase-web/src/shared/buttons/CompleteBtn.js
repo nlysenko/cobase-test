@@ -8,7 +8,7 @@ import React from 'react'
 import { createUseStyles } from 'react-jss'
 import { connect } from 'react-redux'
 
-import { setTaskCompleted } from 'app/redux/actions'
+import { setTaskCompleted, setLastUpdateTime } from 'app/redux/actions'
 
 import playAudioMelody from 'shared/audio/playAudioMelody.js'
 import taskCompletedAudio from 'assets/mp3/task-completed.mp3'
@@ -58,10 +58,17 @@ const useStyles = createUseStyles({
 })
 
 const CompleteBtn = (props) => {
-  const { taskIndex, taskIsCompleted, setTaskCompleted } = props
+  const {
+    taskIndex,
+    taskIsCompleted,
+    setTaskCompleted,
+    setLastUpdateTime,
+  } = props
 
   const completeAllSubtasks = () => {
     setTaskCompleted(taskIndex)
+
+    setLastUpdateTime(taskIndex, Date.now())
 
     playAudioMelody(taskCompletedAudio)
   }
@@ -84,6 +91,7 @@ const CompleteBtn = (props) => {
 
 const mapDispatchToProps = {
   setTaskCompleted: setTaskCompleted,
+  setLastUpdateTime: setLastUpdateTime,
 }
 
 export default connect(null, mapDispatchToProps)(CompleteBtn)
