@@ -4,11 +4,11 @@
  *
  */
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import { createUseStyles } from 'react-jss'
 import { connect } from 'react-redux'
 
-import { toggleSubtask, updateProgress } from 'app/redux/actions'
+import { toggleSubtask } from 'app/redux/actions'
 
 import AddBtn from 'shared/buttons/AddBtn'
 
@@ -71,21 +71,7 @@ const useStyles = createUseStyles({
 })
 
 const Checklist = (props) => {
-  const {
-    subtasks,
-    taskIndex,
-    taskIsCompleted,
-    toggleSubtask,
-    updateProgress,
-  } = props
-
-  useEffect(() => {
-    if (taskIsCompleted) {
-      updateProgress(taskIndex, 'Completed')
-    } else {
-      updateProgress(taskIndex, 'In process')
-    }
-  }, [taskIsCompleted, updateProgress, taskIndex])
+  const { subtasks, taskIndex, toggleSubtask, taskOnPause } = props
 
   const switchSubtask = (event) => {
     const subTaskId = event.target.id
@@ -113,6 +99,7 @@ const Checklist = (props) => {
               id={subtask.id}
               onChange={switchSubtask}
               checked={subtask.completed}
+              disabled={taskOnPause}
             />
 
             <label className={classes.name} htmlFor={subtask.id}>
@@ -127,7 +114,6 @@ const Checklist = (props) => {
 
 const mapDispatchToProps = {
   toggleSubtask: toggleSubtask,
-  updateProgress: updateProgress,
 }
 
 export default connect(null, mapDispatchToProps)(Checklist)

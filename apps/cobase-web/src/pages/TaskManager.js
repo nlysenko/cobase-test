@@ -59,17 +59,29 @@ const TaskManager = (props) => {
     document.title = 'Task Manager | CoBase'
   })
 
-  const { taskIndex, nextIssue, prevIssue, tasks } = props
+  const { taskIndex, nextIssue, prevIssue, tasks, updateProgress } = props
 
   const [task, setTask] = useState(tasks[taskIndex])
+
+  useEffect(() => {
+    setTask(tasks[taskIndex])
+  }, [taskIndex, tasks])
 
   const currentSubtasks = tasks[taskIndex].subtasks
   const taskIsCompleted =
     currentSubtasks.length === getNumberCompletedSubtasks(currentSubtasks)
 
+  const taskOnPause = tasks[taskIndex].progress === 'Paused'
+
   useEffect(() => {
-    setTask(tasks[taskIndex])
-  }, [taskIndex, tasks])
+    if (taskIsCompleted) {
+      updateProgress(taskIndex, 'Completed')
+    } else if (taskOnPause) {
+      updateProgress(taskIndex, 'Paused')
+    } else {
+      updateProgress(taskIndex, 'In process')
+    }
+  }, [taskIsCompleted, updateProgress, taskIndex, taskOnPause])
 
   const classes = useStyles()
   return (
@@ -87,6 +99,7 @@ const TaskManager = (props) => {
           taskIndex={taskIndex}
           taskIsCompleted={taskIsCompleted}
           progress={task.progress}
+          taskOnPause={taskOnPause}
         />
 
         <TaskDescription name={task.name} description={task.description} />
@@ -101,6 +114,7 @@ const TaskManager = (props) => {
           subtasks={task.subtasks}
           taskIndex={taskIndex}
           taskIsCompleted={taskIsCompleted}
+          taskOnPause={taskOnPause}
         />
       </main>
     </div>

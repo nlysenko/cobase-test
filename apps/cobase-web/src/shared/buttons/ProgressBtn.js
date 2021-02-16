@@ -6,6 +6,9 @@
 
 import React from 'react'
 import { createUseStyles } from 'react-jss'
+import { connect } from 'react-redux'
+
+import { updateProgress } from 'app/redux/actions'
 
 import { ReactComponent as PauseIcon } from 'assets/svg/kit-kat.svg'
 
@@ -43,23 +46,31 @@ const useStyles = createUseStyles({
 })
 
 const ProgressBtn = (props) => {
-  const { progress } = props
+  const { taskIndex, taskOnPause, updateProgress } = props
+
+  const toggleProcess = () => {
+    console.log('taskOnPause: ', taskOnPause)
+    if (taskOnPause) {
+      updateProgress(taskIndex, 'In process')
+    } else {
+      updateProgress(taskIndex, 'Paused')
+    }
+  }
 
   const classes = useStyles()
-
   return (
-    <button className={classes.progress_btn}>
-      {progress === 'Paused' ? (
-        <span className={classes.arrow_right} />
-      ) : (
-        <PauseIcon />
-      )}
+    <button className={classes.progress_btn} onClick={toggleProcess}>
+      {taskOnPause ? <span className={classes.arrow_right} /> : <PauseIcon />}
 
       <span className={classes.title}>
-        {progress === 'Paused' ? 'Continue' : 'Pause task'}
+        {taskOnPause ? 'Continue' : 'Pause task'}
       </span>
     </button>
   )
 }
 
-export default ProgressBtn
+const mapDispatchToProps = {
+  updateProgress: updateProgress,
+}
+
+export default connect(null, mapDispatchToProps)(ProgressBtn)

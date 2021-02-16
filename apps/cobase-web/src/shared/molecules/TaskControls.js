@@ -56,7 +56,7 @@ const useStyles = createUseStyles({
 })
 
 const TaskControls = (props) => {
-  const { taskIndex, taskIsCompleted, progress } = props
+  const { taskIndex, taskIsCompleted, taskOnPause } = props
 
   const classes = useStyles()
   return (
@@ -66,7 +66,7 @@ const TaskControls = (props) => {
       {!taskIsCompleted ? <span className={classes.or}>or</span> : false}
 
       {!taskIsCompleted ? (
-        <ProgressBtn taskIndex={taskIndex} progress={progress} />
+        <ProgressBtn taskIndex={taskIndex} taskOnPause={taskOnPause} />
       ) : (
         false
       )}
