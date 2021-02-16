@@ -9,6 +9,7 @@ export const initialState = {
     0: {
       name: 'Fix bathroom walls',
       id: '9ec36070-b579-4227-a6e4-a65aaa42a0a3',
+      progress: 'In process',
       description:
         'Bathroom walls needs some fixing. Descriptions can be longer than only one sentence. Descriptions can be longer than only one sentence. Descriptions can be longer than only one sentence.',
       employees: ['/img/user-1.png', '/img/user-2.png', '/img/user-3.png'],
@@ -37,6 +38,7 @@ export const initialState = {
     1: {
       name: 'Fix bedroom floor',
       id: 'df9543ec-e30e-46d7-b443-961785353b96',
+      progress: 'Paused',
       description:
         'Bedroom floor needs some fixing. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
       employees: ['/img/user-1.png', '/img/user-2.png'],

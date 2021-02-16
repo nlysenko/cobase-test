@@ -8,7 +8,7 @@ import React from 'react'
 import { createUseStyles } from 'react-jss'
 
 import CompleteBtn from 'shared/buttons/CompleteBtn'
-import ProcessBtn from 'shared/buttons/ProcessBtn'
+import ProgressBtn from 'shared/buttons/ProgressBtn'
 
 import { ReactComponent as CreateIcon } from 'assets/svg/create.svg'
 import { ReactComponent as ShareIcon } from 'assets/svg/share.svg'
@@ -56,16 +56,20 @@ const useStyles = createUseStyles({
 })
 
 const TaskControls = (props) => {
-  const { taskIndex, taskPaused, toggleProcess } = props
+  const { taskIndex, taskIsCompleted, progress } = props
 
   const classes = useStyles()
   return (
     <div className={classes.task_controls}>
-      <CompleteBtn taskIndex={taskIndex} />
+      <CompleteBtn taskIsCompleted={taskIsCompleted} taskIndex={taskIndex} />
 
-      <span className={classes.or}>or</span>
+      {!taskIsCompleted ? <span className={classes.or}>or</span> : false}
 
-      <ProcessBtn taskPaused={taskPaused} toggleProcess={toggleProcess} />
+      {!taskIsCompleted ? (
+        <ProgressBtn taskIndex={taskIndex} progress={progress} />
+      ) : (
+        false
+      )}
 
       <div className={classes.edits}>
         <i className={classes.create_icon}>

@@ -1,6 +1,6 @@
 /**
  *
- * ProcessBtn
+ * ProgressBtn
  *
  */
 
@@ -12,7 +12,7 @@ import { ReactComponent as PauseIcon } from 'assets/svg/kit-kat.svg'
 import { FiordColor, NepalColor, RegentStBlueColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  process_btn: {
+  progress_btn: {
     width: 92,
     height: 22,
     display: 'flex',
@@ -42,19 +42,24 @@ const useStyles = createUseStyles({
   },
 })
 
-const ProcessBtn = (props) => {
-  const { taskPaused, toggleProcess } = props
+const ProgressBtn = (props) => {
+  const { progress } = props
 
   const classes = useStyles()
+
   return (
-    <button className={classes.process_btn} onClick={toggleProcess}>
-      {taskPaused ? <span className={classes.arrow_right} /> : <PauseIcon />}
+    <button className={classes.progress_btn}>
+      {progress === 'Paused' ? (
+        <span className={classes.arrow_right} />
+      ) : (
+        <PauseIcon />
+      )}
 
       <span className={classes.title}>
-        {taskPaused ? 'Continue' : 'Pause task'}
+        {progress === 'Paused' ? 'Continue' : 'Pause task'}
       </span>
     </button>
   )
 }
 
-export default ProcessBtn
+export default ProgressBtn

@@ -4,11 +4,11 @@
  *
  */
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { createUseStyles } from 'react-jss'
 import { connect } from 'react-redux'
 
-import { toggleSubtask } from 'app/redux/actions'
+import { toggleSubtask, updateProgress } from 'app/redux/actions'
 
 import AddBtn from 'shared/buttons/AddBtn'
 
@@ -71,7 +71,21 @@ const useStyles = createUseStyles({
 })
 
 const Checklist = (props) => {
-  const { subtasks, taskIndex, toggleSubtask } = props
+  const {
+    subtasks,
+    taskIndex,
+    taskIsCompleted,
+    toggleSubtask,
+    updateProgress,
+  } = props
+
+  useEffect(() => {
+    if (taskIsCompleted) {
+      updateProgress(taskIndex, 'Completed')
+    } else {
+      updateProgress(taskIndex, 'In process')
+    }
+  }, [taskIsCompleted, updateProgress, taskIndex])
 
   const switchSubtask = (event) => {
     const subTaskId = event.target.id
@@ -113,12 +127,7 @@ const Checklist = (props) => {
 
 const mapDispatchToProps = {
   toggleSubtask: toggleSubtask,
+  updateProgress: updateProgress,
 }
 
-const mapStateToProps = function(state) {
-  return {
-    tasks: state.tasks,
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Checklist)
+export default connect(null, mapDispatchToProps)(Checklist)

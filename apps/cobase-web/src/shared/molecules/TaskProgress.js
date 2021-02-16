@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { createUseStyles } from 'react-jss'
 
 import {
@@ -64,23 +64,7 @@ const useStyles = createUseStyles({
 })
 
 const TaskProgress = (props) => {
-  const { subtasks, taskId, taskPaused } = props
-
-  const [progress, setProgress] = useState('In process')
-
-  useEffect(() => {
-    const currentSubtasks = subtasks.length
-    const completedSubtasks = subtasks.filter((subtask) => subtask.completed)
-      .length
-
-    if (taskPaused) {
-      setProgress('Paused')
-    } else if (!taskPaused && currentSubtasks === completedSubtasks) {
-      setProgress('Completed')
-    } else {
-      setProgress('In process')
-    }
-  }, [subtasks, taskPaused])
+  const { progress } = props
 
   const classes = useStyles()
   return (

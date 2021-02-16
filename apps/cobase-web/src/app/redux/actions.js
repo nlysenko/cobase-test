@@ -4,7 +4,11 @@
  *
  */
 
-import { TOGGLE_SUBTASK, SET_TASK_COMPLETED } from './constans'
+import {
+  TOGGLE_SUBTASK,
+  SET_TASK_COMPLETED,
+  UPDATE_TASK_PROGRESS,
+} from './constans'
 
 export const toggleSubtask = (taskIndex, subTaskId) => {
   return {
@@ -21,6 +25,16 @@ export const setTaskCompleted = (taskIndex) => {
     type: SET_TASK_COMPLETED,
     payload: {
       taskIndex,
+    },
+  }
+}
+
+export const updateProgress = (taskIndex, progress) => {
+  return {
+    type: UPDATE_TASK_PROGRESS,
+    payload: {
+      taskIndex,
+      progress,
     },
   }
 }

@@ -19,6 +19,10 @@ import Checklist from 'shared/molecules/Checklist'
 import PrevIssueBtn from 'shared/buttons/PrevIssueBtn'
 import NextIssueBtn from 'shared/buttons/NextIssueBtn'
 
+import getNumberCompletedSubtasks from 'shared/js/getNumberCompletedSubtasks'
+
+import { updateProgress } from 'app/redux/actions'
+
 import { BotticelliColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
@@ -51,43 +55,38 @@ const useStyles = createUseStyles({
 })
 
 const TaskManager = (props) => {
+  useEffect(() => {
+    document.title = 'Task Manager | CoBase'
+  })
+
   const { taskIndex, nextIssue, prevIssue, tasks } = props
 
   const [task, setTask] = useState(tasks[taskIndex])
-  const [taskPaused, setTaskPaused] = useState(false)
+
+  const currentSubtasks = tasks[taskIndex].subtasks
+  const taskIsCompleted =
+    currentSubtasks.length === getNumberCompletedSubtasks(currentSubtasks)
 
   useEffect(() => {
     setTask(tasks[taskIndex])
   }, [taskIndex, tasks])
 
-  const toggleProcess = () => {
-    setTaskPaused(!taskPaused)
-  }
-
-  useEffect(() => {
-    document.title = 'Task Manager | CoBase'
-  })
-
   const classes = useStyles()
   return (
     <div className={classes.task_manager}>
       <header className={classes.header}>
-        <TaskProgress
-          subtasks={task.subtasks}
-          taskId={task.id}
-          taskPaused={taskPaused}
-        />
+        <TaskProgress progress={task.progress} />
 
-        <PrevIssueBtn getPrevIssue={prevIssue} />
+        <PrevIssueBtn showPrevIssue={prevIssue} />
 
-        <NextIssueBtn getNextIssue={nextIssue} />
+        <NextIssueBtn showNextIssue={nextIssue} />
       </header>
 
       <main className={classes.page_content}>
         <TaskControls
           taskIndex={taskIndex}
-          taskPaused={taskPaused}
-          toggleProcess={toggleProcess}
+          taskIsCompleted={taskIsCompleted}
+          progress={task.progress}
         />
 
         <TaskDescription name={task.name} description={task.description} />
@@ -98,7 +97,11 @@ const TaskManager = (props) => {
 
         <Gallery arr={task.gallery} />
 
-        <Checklist subtasks={task.subtasks} taskIndex={taskIndex} />
+        <Checklist
+          subtasks={task.subtasks}
+          taskIndex={taskIndex}
+          taskIsCompleted={taskIsCompleted}
+        />
       </main>
     </div>
   )
@@ -110,4 +113,8 @@ const mapStateToProps = function(state) {
   }
 }
 
-export default connect(mapStateToProps)(TaskManager)
+const mapDispatchToProps = {
+  updateProgress: updateProgress,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskManager)

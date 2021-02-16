@@ -10,8 +10,6 @@ import { connect } from 'react-redux'
 
 import { setTaskCompleted } from 'app/redux/actions'
 
-import getNumberCompletedSubtasks from 'shared/js/getNumberCompletedSubtasks'
-
 import playAudioMelody from 'shared/audio/playAudioMelody.js'
 import taskCompletedAudio from 'assets/mp3/task-completed.mp3'
 
@@ -60,12 +58,7 @@ const useStyles = createUseStyles({
 })
 
 const CompleteBtn = (props) => {
-  const { taskIndex, tasks, setTaskCompleted } = props
-
-  const currentSubtasks = tasks[taskIndex].subtasks
-
-  const taskIsCompleted =
-    currentSubtasks.length === getNumberCompletedSubtasks(currentSubtasks)
+  const { taskIndex, taskIsCompleted, setTaskCompleted } = props
 
   const completeAllSubtasks = () => {
     setTaskCompleted(taskIndex)
@@ -82,19 +75,15 @@ const CompleteBtn = (props) => {
     >
       <CompleteIcon />
 
-      <span className={classes.title}>Complete</span>
+      <span className={classes.title}>
+        {taskIsCompleted ? 'Completed' : 'Complete'}
+      </span>
     </button>
   )
-}
-
-const mapStateToProps = function(state) {
-  return {
-    tasks: state.tasks,
-  }
 }
 
 const mapDispatchToProps = {
   setTaskCompleted: setTaskCompleted,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompleteBtn)
+export default connect(null, mapDispatchToProps)(CompleteBtn)

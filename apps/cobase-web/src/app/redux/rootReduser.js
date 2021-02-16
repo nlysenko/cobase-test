@@ -6,7 +6,11 @@
 
 import update from 'immutability-helper'
 
-import { TOGGLE_SUBTASK, SET_TASK_COMPLETED } from './constans'
+import {
+  TOGGLE_SUBTASK,
+  SET_TASK_COMPLETED,
+  UPDATE_TASK_PROGRESS,
+} from './constans'
 
 import initialState from './initialState'
 
@@ -35,6 +39,7 @@ const rootReduser = (state = initialState, action) => {
       return update(state, {
         tasks: {
           [action.payload.taskIndex]: {
+            progress: { $set: 'Completed' },
             subtasks: {
               $apply: (subtasks) =>
                 subtasks.map((item, i) => {
@@ -45,6 +50,15 @@ const rootReduser = (state = initialState, action) => {
                   }
                 }),
             },
+          },
+        },
+      })
+
+    case UPDATE_TASK_PROGRESS:
+      return update(state, {
+        tasks: {
+          [action.payload.taskIndex]: {
+            progress: { $set: action.payload.progress },
           },
         },
       })

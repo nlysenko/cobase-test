@@ -58,11 +58,11 @@ const useStyles = createUseStyles({
 })
 
 const PrevIssueBtn = (props) => {
-  const { getPrevIssue } = props
+  const { showPrevIssue } = props
 
   const classes = useStyles()
   return (
-    <button className={classes.prev_issue_btn} onClick={getPrevIssue}>
+    <button className={classes.prev_issue_btn} onClick={showPrevIssue}>
       <span className={classes.arrow_left} />
     </button>
   )
