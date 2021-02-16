@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/cobase-test/static/js/main.ed1c4c97.chunk.js",
-    "main.js.map": "/cobase-test/static/js/main.ed1c4c97.chunk.js.map",
-    "runtime-main.js": "/cobase-test/static/js/runtime-main.c8c19d12.js",
-    "runtime-main.js.map": "/cobase-test/static/js/runtime-main.c8c19d12.js.map",
-    "static/js/2.259b5687.chunk.js": "/cobase-test/static/js/2.259b5687.chunk.js",
-    "static/js/2.259b5687.chunk.js.map": "/cobase-test/static/js/2.259b5687.chunk.js.map",
+    "main.js": "/cobase-test/static/js/main.b9c6c018.chunk.js",
+    "main.js.map": "/cobase-test/static/js/main.b9c6c018.chunk.js.map",
+    "runtime-main.js": "/cobase-test/static/js/runtime-main.5292e7ef.js",
+    "runtime-main.js.map": "/cobase-test/static/js/runtime-main.5292e7ef.js.map",
+    "static/js/2.78bc5b72.chunk.js": "/cobase-test/static/js/2.78bc5b72.chunk.js",
+    "static/js/2.78bc5b72.chunk.js.map": "/cobase-test/static/js/2.78bc5b72.chunk.js.map",
     "index.html": "/cobase-test/index.html",
-    "static/js/2.259b5687.chunk.js.LICENSE.txt": "/cobase-test/static/js/2.259b5687.chunk.js.LICENSE.txt",
+    "static/js/2.78bc5b72.chunk.js.LICENSE.txt": "/cobase-test/static/js/2.78bc5b72.chunk.js.LICENSE.txt",
     "static/media/blue-complete.b52a4c29.svg": "/cobase-test/static/media/blue-complete.b52a4c29.svg",
     "static/media/checkbox-checked.bfd8551f.mp3": "/cobase-test/static/media/checkbox-checked.bfd8551f.mp3",
     "static/media/complete-icon.617e3196.svg": "/cobase-test/static/media/complete-icon.617e3196.svg",
@@ -30,8 +30,8 @@
     "static/media/yellow-assign.db5de1a1.svg": "/cobase-test/static/media/yellow-assign.db5de1a1.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.c8c19d12.js",
-    "static/js/2.259b5687.chunk.js",
-    "static/js/main.ed1c4c97.chunk.js"
+    "static/js/runtime-main.5292e7ef.js",
+    "static/js/2.78bc5b72.chunk.js",
+    "static/js/main.b9c6c018.chunk.js"
   ]
 }
