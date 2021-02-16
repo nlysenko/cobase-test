@@ -10,6 +10,10 @@ import { connect } from 'react-redux'
 
 import { updateProgress } from 'app/redux/actions'
 
+import playAudioMelody from 'shared/audio/playAudioMelody.js'
+import continueAudio from 'assets/mp3/continue.mp3'
+import pauseAudio from 'assets/mp3/pause.mp3'
+
 import { ReactComponent as PauseIcon } from 'assets/svg/kit-kat.svg'
 
 import { FiordColor, NepalColor, RegentStBlueColor } from 'shared/styles/colors'
@@ -49,11 +53,14 @@ const ProgressBtn = (props) => {
   const { taskIndex, taskOnPause, updateProgress } = props
 
   const toggleProcess = () => {
-    console.log('taskOnPause: ', taskOnPause)
     if (taskOnPause) {
       updateProgress(taskIndex, 'In process')
+
+      playAudioMelody(continueAudio)
     } else {
       updateProgress(taskIndex, 'Paused')
+
+      playAudioMelody(pauseAudio)
     }
   }
 
