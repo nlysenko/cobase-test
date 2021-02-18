@@ -68,7 +68,7 @@ const rootReduser = (state = initialState, action) => {
       return update(state, {
         tasks: {
           [action.payload.taskIndex]: {
-            lastUpdate: { $set: action.payload.timestamp },
+            updated: { $set: action.payload.timestamp },
           },
         },
       })

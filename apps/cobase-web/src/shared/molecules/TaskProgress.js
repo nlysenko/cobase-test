@@ -65,9 +65,9 @@ const useStyles = createUseStyles({
 })
 
 const TaskProgress = (props) => {
-  const { progress, lastUpdateTime } = props
+  const { progress, lastUpdatedTime } = props
 
-  const showMinutes = humanizeDuration.humanizer({
+  const showLaskUpdatedTaskTime = humanizeDuration.humanizer({
     units: ['m'],
     round: true,
     spacer: '',
@@ -75,18 +75,6 @@ const TaskProgress = (props) => {
     languages: {
       shortEn: {
         m: () => 'm ago',
-      },
-    },
-  })
-
-  const showSeconds = humanizeDuration.humanizer({
-    units: ['s'],
-    round: true,
-    spacer: '',
-    language: 'shortEn',
-    languages: {
-      shortEn: {
-        s: () => 's ago',
       },
     },
   })
@@ -121,9 +109,7 @@ const TaskProgress = (props) => {
       </div>
 
       <span className={classes.time}>
-        {currentTime - lastUpdateTime >= 59999
-          ? showMinutes(currentTime - lastUpdateTime)
-          : showSeconds(currentTime - lastUpdateTime)}
+        {showLaskUpdatedTaskTime(currentTime - lastUpdatedTime)}
       </span>
     </div>
   )
