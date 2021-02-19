@@ -11,7 +11,7 @@ import { createUseStyles } from 'react-jss'
 import { WhiteColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  show_more: {
+  showMore: {
     display: 'flex',
     alignItems: 'center',
     height: 10,
@@ -36,7 +36,7 @@ const ShowMoreLink = () => {
   const classes = useStyles()
 
   return (
-    <Link className={classes.show_more} to="/#" onClick={showMore}>
+    <Link className={classes.showMore} to="/#" onClick={showMore}>
       <i className={classes.point} />
 
       <i className={classes.point} />

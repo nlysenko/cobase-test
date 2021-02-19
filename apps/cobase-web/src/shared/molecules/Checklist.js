@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 
 import { toggleSubtask, setLastUpdateTime } from 'app/redux/actions'
 
-import AddBtn from 'shared/buttons/AddBtn'
+import Add from 'shared/icons/Add'
 
 import playAudioMelody from 'shared/audio/playAudioMelody.js'
 import subtaskCheckedAudio from 'assets/mp3/checkbox-checked.mp3'
@@ -23,7 +23,7 @@ import {
 } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  wrapper: {
+  checklist: {
     borderTop: [1, 'solid', BlackSqueezeColor],
     paddingTop: 17,
     order: '5',
@@ -43,7 +43,7 @@ const useStyles = createUseStyles({
     color: RhinoColor,
   },
 
-  subtasks_list: {
+  subtasksList: {
     marginTop: 22,
   },
 
@@ -91,14 +91,14 @@ const Checklist = (props) => {
 
   const classes = useStyles()
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.checklist}>
       <div className={classes.inner}>
         <h3 className={classes.title}>Checklist</h3>
 
-        <AddBtn />
+        <Add />
       </div>
 
-      <ul className={classes.subtasks_list}>
+      <ul className={classes.subtasksList}>
         {subtasks.map((subtask, i) => (
           <li className={classes.item} key={i}>
             <input

@@ -1,6 +1,6 @@
 /**
  *
- * TaskProgress
+ * Status
  *
  */
 
@@ -16,7 +16,7 @@ import {
 } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  wrapper: {
+  status: {
     display: 'flex',
     alignItems: 'center',
     flexGrow: '1',
@@ -38,7 +38,7 @@ const useStyles = createUseStyles({
     borderRadius: 120,
   },
 
-  inprocess: {
+  inProcess: {
     color: PortageColor,
     border: [1, 'solid', PortageColor],
   },
@@ -53,7 +53,7 @@ const useStyles = createUseStyles({
     border: [1, 'solid', AppleColor],
   },
 
-  name: {
+  title: {
     fontSize: 13,
   },
 
@@ -64,7 +64,7 @@ const useStyles = createUseStyles({
   },
 })
 
-const TaskProgress = (props) => {
+const Status = (props) => {
   const { progress, lastUpdatedTime } = props
 
   const showLaskUpdatedTaskTime = humanizeDuration.humanizer({
@@ -95,17 +95,17 @@ const TaskProgress = (props) => {
 
   const classes = useStyles()
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.status}>
       <div
         className={`${classes.progress} ${
           progress === 'In process'
-            ? classes.inprocess
+            ? classes.inProcess
             : progress === 'Completed'
             ? classes.completed
             : classes.paused
         }`}
       >
-        <span className={classes.name}>{progress}</span>
+        <span className={classes.title}>{progress}</span>
       </div>
 
       <span className={classes.time}>
@@ -115,4 +115,4 @@ const TaskProgress = (props) => {
   )
 }
 
-export default TaskProgress
+export default Status

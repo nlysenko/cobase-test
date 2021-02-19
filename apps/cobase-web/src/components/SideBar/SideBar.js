@@ -29,7 +29,7 @@ const useStyles = createUseStyles({
     overflow: 'scroll',
   },
 
-  sidebar_open: {
+  sideBarIsOpen: {
     left: 0,
     transition: '0.5s',
   },
@@ -54,7 +54,7 @@ const SideBar = (props) => {
   return (
     <div
       className={`${classes.sidebar} ${
-        sideBarIsOpen ? classes.sidebar_open : ''
+        sideBarIsOpen ? classes.sideBarIsOpen : ''
       }`}
     >
       <SideBarHeader />

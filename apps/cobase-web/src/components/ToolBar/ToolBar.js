@@ -28,12 +28,12 @@ const useStyles = createUseStyles({
     },
   },
 
-  sidebar__open: {
+  sidebarIsOpen: {
     width: 'calc(100% - 250px)',
     transition: '0.5s',
   },
 
-  sidebar__closed: {
+  sidebarIsClosed: {
     width: '100%',
     transition: '0.5s',
   },
@@ -47,7 +47,7 @@ const ToolBar = (props) => {
   return (
     <div
       className={`${classes.toolbar} ${
-        sideBarIsOpen ? classes.sidebar__open : classes.sidebar__closed
+        sideBarIsOpen ? classes.sidebarIsOpen : classes.sidebarIsClosed
       }`}
     >
       <Navbar toggleSideBar={props.toggleSideBar} />

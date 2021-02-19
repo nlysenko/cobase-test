@@ -1,6 +1,6 @@
 /**
  *
- * TaskControls
+ * Controls
  *
  */
 
@@ -16,7 +16,7 @@ import { ReactComponent as ShareIcon } from 'assets/svg/share.svg'
 import { NepalColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  task_controls: {
+  controls: {
     order: '0',
     display: 'flex',
     alignItems: 'center',
@@ -44,23 +44,23 @@ const useStyles = createUseStyles({
     },
   },
 
-  create_icon: {
+  createIcon: {
     display: 'inline-block',
     height: 16,
   },
 
-  share_icon: {
-    composes: '$create_icon',
+  shareIcon: {
+    composes: '$createIcon',
     marginLeft: 26,
   },
 })
 
-const TaskControls = (props) => {
+const Controls = (props) => {
   const { taskIndex, taskIsCompleted, taskOnPause } = props
 
   const classes = useStyles()
   return (
-    <div className={classes.task_controls}>
+    <div className={classes.controls}>
       <CompleteBtn taskIsCompleted={taskIsCompleted} taskIndex={taskIndex} />
 
       {!taskIsCompleted ? <span className={classes.or}>or</span> : false}
@@ -72,11 +72,11 @@ const TaskControls = (props) => {
       )}
 
       <div className={classes.edits}>
-        <i className={classes.create_icon}>
+        <i className={classes.createIcon}>
           <CreateIcon />
         </i>
 
-        <i className={classes.share_icon}>
+        <i className={classes.shareIcon}>
           <ShareIcon />
         </i>
       </div>
@@ -84,4 +84,4 @@ const TaskControls = (props) => {
   )
 }
 
-export default TaskControls
+export default Controls

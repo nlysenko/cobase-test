@@ -30,7 +30,7 @@ const useStyles = createUseStyles({
     },
   },
 
-  globe_wrapper: {
+  globeWrapper: {
     cursor: 'pointer',
     position: 'relative',
     marginLeft: 20,
@@ -77,7 +77,7 @@ const SubMenu = () => {
     <div className={classes.submenu}>
       <SearchIcon className={classes.search} />
 
-      <div className={classes.globe_wrapper}>
+      <div className={classes.globeWrapper}>
         <span className={classes.indicator} />
 
         <GlobeIcon />

@@ -18,7 +18,7 @@ import OpenNewPageMelody from 'assets/mp3/open-page.mp3'
 import { WhiteColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  navbar_list: {
+  navbarList: {
     display: 'flex',
 
     '@media (max-width: 767px)': {
@@ -30,7 +30,7 @@ const useStyles = createUseStyles({
     paddingRight: 30,
   },
 
-  navbar_link: {
+  navLink: {
     fontSize: 15,
 
     '&:hover': {
@@ -38,7 +38,7 @@ const useStyles = createUseStyles({
     },
   },
 
-  navbar_link_selected: {
+  navLinkIsSelected: {
     borderBottom: [1, 'solid', WhiteColor],
   },
 })
@@ -48,11 +48,11 @@ const Navbar = (props) => {
 
   return (
     <nav>
-      <ul className={classes.navbar_list}>
+      <ul className={classes.navbarList}>
         <li className={classes.item}>
           <NavLink
-            className={classes.navbar_link}
-            activeClassName={classes.navbar_link_selected}
+            className={classes.navLink}
+            activeClassName={classes.navLinkIsSelected}
             to="/projects"
             onClick={() => playAudioMelody(OpenNewPageMelody)}
           >
@@ -62,8 +62,8 @@ const Navbar = (props) => {
 
         <li className={classes.item}>
           <NavLink
-            className={classes.navbar_link}
-            activeClassName={classes.navbar_link_selected}
+            className={classes.navLink}
+            activeClassName={classes.navLinkIsSelected}
             to="/people"
             onClick={() => playAudioMelody(OpenNewPageMelody)}
           >
@@ -73,8 +73,8 @@ const Navbar = (props) => {
 
         <li className={classes.item}>
           <NavLink
-            className={classes.navbar_link}
-            activeClassName={classes.navbar_link_selected}
+            className={classes.navLink}
+            activeClassName={classes.navLinkIsSelected}
             to="/team"
             onClick={() => playAudioMelody(OpenNewPageMelody)}
           >

@@ -30,7 +30,7 @@ const useStyles = createUseStyles({
     overflow: 'scroll',
   },
 
-  sidebar_open_inner: {
+  sideBarOpenInner: {
     width: 1920,
     height: 960,
     backgroundColor: BgColor,
@@ -41,7 +41,7 @@ const useStyles = createUseStyles({
     transition: '0.5s',
   },
 
-  sidebar_closed_inner: {
+  sideBarClosedInner: {
     width: 1920,
     minHeight: 1200,
     backgroundColor: BgColor,
@@ -96,9 +96,7 @@ const MainPage = (props) => {
     <div className={classes.wrapper}>
       <div
         className={`${
-          sideBarIsOpen
-            ? classes.sidebar_open_inner
-            : classes.sidebar_closed_inner
+          sideBarIsOpen ? classes.sideBarOpenInner : classes.sideBarClosedInner
         }`}
       >
         <div

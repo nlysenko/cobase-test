@@ -26,7 +26,7 @@ const useStyles = createUseStyles({
     transition: '0.5s',
   },
 
-  sidebar_open: {
+  sidebarOpen: {
     paddingLeft: 250,
     transition: '0.5s',
   },
@@ -78,7 +78,7 @@ const Main = (props) => {
 
   return (
     <div
-      className={`${classes.main} ${sideBarOpen ? classes.sidebar_open : ''}`}
+      className={`${classes.main} ${sideBarOpen ? classes.sidebarOpen : ''}`}
     >
       <ToolBar sideBarIsOpen={sideBarOpen} toggleSideBar={toggleSideBar} />
 

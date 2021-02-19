@@ -8,9 +8,9 @@ import React, { useEffect, useState } from 'react'
 import { createUseStyles } from 'react-jss'
 import { connect } from 'react-redux'
 
-import TaskProgress from 'shared/molecules/TaskProgress'
-import TaskControls from 'shared/molecules/TaskControls'
-import TaskDescription from 'shared/molecules/TaskDescription'
+import Status from 'shared/molecules/Status'
+import Controls from 'shared/molecules/Controls'
+import Description from 'shared/molecules/Description'
 import Employees from 'shared/molecules/Employees'
 import Tags from 'shared/molecules/Tags'
 import Gallery from 'shared/molecules/Gallery'
@@ -26,7 +26,7 @@ import { updateProgress } from 'app/redux/actions'
 import { BotticelliColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  task_manager: {
+  taskManager: {
     minHeight: '100%',
   },
 
@@ -37,7 +37,7 @@ const useStyles = createUseStyles({
     alignItems: 'center',
   },
 
-  page_content: {
+  pageContent: {
     display: 'flex',
     flexDirection: 'column',
     padding: {
@@ -85,24 +85,24 @@ const TaskManager = (props) => {
 
   const classes = useStyles()
   return (
-    <div className={classes.task_manager}>
+    <div className={classes.taskManager}>
       <header className={classes.header}>
-        <TaskProgress progress={task.progress} lastUpdatedTime={task.updated} />
+        <Status progress={task.progress} lastUpdatedTime={task.updated} />
 
         <PrevIssueBtn showPrevIssue={prevIssue} />
 
         <NextIssueBtn showNextIssue={nextIssue} />
       </header>
 
-      <main className={classes.page_content}>
-        <TaskControls
+      <main className={classes.pageContent}>
+        <Controls
           taskIndex={taskIndex}
           taskIsCompleted={taskIsCompleted}
           progress={task.progress}
           taskOnPause={taskOnPause}
         />
 
-        <TaskDescription name={task.name} description={task.description} />
+        <Description title={task.name} about={task.description} />
 
         <Employees employees={task.employees} />
 

@@ -21,10 +21,11 @@ import {
   WhiteColor,
   AtlantisColor,
   JavaColor,
+  ForestGreenColor,
 } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  complete_btn: {
+  completeBtn: {
     width: 143,
     height: 42,
     paddingLeft: 20,
@@ -37,6 +38,10 @@ const useStyles = createUseStyles({
 
     '&:focus': {
       outline: 'none',
+    },
+
+    '&:active': {
+      background: ForestGreenColor,
     },
 
     '&:hover': {
@@ -76,7 +81,7 @@ const CompleteBtn = (props) => {
   const classes = useStyles()
   return (
     <button
-      className={classes.complete_btn}
+      className={classes.completeBtn}
       onClick={completeAllSubtasks}
       disabled={taskIsCompleted}
     >

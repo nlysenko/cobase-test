@@ -16,11 +16,17 @@ import pauseAudio from 'assets/mp3/pause.mp3'
 
 import { ReactComponent as PauseIcon } from 'assets/svg/kit-kat.svg'
 
-import { FiordColor, NepalColor, RegentStBlueColor } from 'shared/styles/colors'
+import {
+  FiordColor,
+  NepalColor,
+  RegentStBlueColor,
+  GothicColor,
+  RhinoColor,
+} from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  progress_btn: {
-    width: 92,
+  progressBtn: {
+    width: 95,
     height: 22,
     display: 'flex',
     alignItems: 'center',
@@ -31,6 +37,19 @@ const useStyles = createUseStyles({
     '&:focus': {
       outline: 'none',
     },
+
+    '&:hover $arrowRight': {
+      borderLeftColor: GothicColor,
+    },
+
+    '&:hover path': {
+      fill: GothicColor,
+    },
+
+    '&:hover $title': {
+      borderBottomColor: GothicColor,
+      color: RhinoColor,
+    },
   },
 
   title: {
@@ -40,12 +59,16 @@ const useStyles = createUseStyles({
     marginLeft: 5,
   },
 
-  arrow_right: {
+  arrowRight: {
     width: 0,
     height: 0,
     borderTop: [8, 'solid', 'transparent'],
     borderBottom: [8, 'solid', 'transparent'],
     borderLeft: [12, 'solid', RegentStBlueColor],
+  },
+
+  pause: {
+    padding: { top: 3, right: 3 },
   },
 })
 
@@ -70,8 +93,14 @@ const ProgressBtn = (props) => {
 
   const classes = useStyles()
   return (
-    <button className={classes.progress_btn} onClick={toggleProcess}>
-      {taskOnPause ? <span className={classes.arrow_right} /> : <PauseIcon />}
+    <button className={classes.progressBtn} onClick={toggleProcess}>
+      {taskOnPause ? (
+        <span className={classes.arrowRight} />
+      ) : (
+        <i className={classes.pause}>
+          <PauseIcon />
+        </i>
+      )}
 
       <span className={classes.title}>
         {taskOnPause ? 'Continue' : 'Pause task'}
