@@ -14,7 +14,7 @@ import {
   NepalColor,
   WhiteColor,
   WaikawaGrayColor,
-  PortageColor,
+  AzureRadianceColor,
   JavaColor,
   FrenchPassColor,
 } from 'shared/styles/colors'
@@ -59,7 +59,7 @@ const useStyles = createUseStyles({
 
   taskProgress: {
     height: '100%',
-    backgroundColor: PortageColor,
+    backgroundColor: AzureRadianceColor,
     borderRadius: 100,
   },
 

@@ -12,13 +12,18 @@ import { toggleSubtask, setLastUpdateTime } from 'app/redux/actions'
 
 import Add from 'shared/icons/Add'
 
+import { ReactComponent as Tick } from 'assets/svg/checkbox.svg'
+
 import playAudioMelody from 'shared/audio/playAudioMelody.js'
 import subtaskCheckedAudio from 'assets/mp3/checkbox-checked.mp3'
 
 import {
   BlackSqueezeColor,
   RhinoColor,
+  AzureRadianceColor,
+  LochmaraColor,
   FiordColor,
+  PeriwinkleGrayColor,
   NepalColor,
 } from 'shared/styles/colors'
 
@@ -54,11 +59,43 @@ const useStyles = createUseStyles({
   },
 
   subtask: {
-    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+  },
 
-    '&:checked+$name': {
-      color: NepalColor,
+  customСheckbox: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 18,
+    height: 18,
+    border: [1, 'solid', PeriwinkleGrayColor],
+    borderRadius: '4px',
+    cursor: 'pointer',
+  },
+
+  hidden: {
+    display: 'none',
+
+    '&:checked + i': {
+      borderColor: LochmaraColor,
+      background: AzureRadianceColor,
+    },
+
+    '&:disabled + i': {
+      borderColor: PeriwinkleGrayColor,
+      background: PeriwinkleGrayColor,
+      cursor: 'unset',
+    },
+
+    '&:checked ~ span': {
       textDecoration: 'line-through',
+      color: NepalColor,
+    },
+
+    '&:disabled ~ span': {
+      color: PeriwinkleGrayColor,
+      cursor: 'unset',
     },
   },
 
@@ -101,17 +138,21 @@ const Checklist = (props) => {
       <ul className={classes.subtasksList}>
         {subtasks.map((subtask, i) => (
           <li className={classes.item} key={i}>
-            <input
-              className={classes.subtask}
-              type="checkbox"
-              id={subtask.id}
-              onChange={switchSubtask}
-              checked={subtask.completed}
-              disabled={taskOnPause}
-            />
+            <label className={classes.subtask} htmlFor={subtask.id}>
+              <input
+                className={classes.hidden}
+                type="checkbox"
+                id={subtask.id}
+                onChange={switchSubtask}
+                checked={subtask.completed}
+                disabled={taskOnPause}
+              />
 
-            <label className={classes.name} htmlFor={subtask.id}>
-              {subtask.name}
+              <i className={classes.customСheckbox}>
+                {subtask.completed ? <Tick className={classes.tick} /> : false}
+              </i>
+
+              <span className={classes.name}>{subtask.name}</span>
             </label>
           </li>
         ))}

@@ -9,7 +9,7 @@ import { createUseStyles } from 'react-jss'
 import humanizeDuration from 'humanize-duration'
 
 import {
-  PortageColor,
+  AzureRadianceColor,
   FiordColor,
   AppleColor,
   NepalColor,
@@ -39,8 +39,8 @@ const useStyles = createUseStyles({
   },
 
   inProcess: {
-    color: PortageColor,
-    border: [1, 'solid', PortageColor],
+    color: AzureRadianceColor,
+    border: [1, 'solid', AzureRadianceColor],
   },
 
   paused: {
