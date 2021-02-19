@@ -7,14 +7,12 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 
-import {
-  BotticelliColor,
-  RegentStBlueColor,
-  LilyWhiteColor,
-} from 'shared/styles/colors'
+import { ReactComponent as ArrowLeft } from 'assets/svg/arrow-left.svg'
+
+import { BotticelliColor, LilyWhiteColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  prev_issue_btn: {
+  prevIssueBtn: {
     height: '100%',
     width: 52,
     display: 'flex',
@@ -47,23 +45,17 @@ const useStyles = createUseStyles({
       outline: 'none',
     },
   },
-
-  arrow_left: {
-    width: 0,
-    height: 0,
-    borderTop: [5, 'solid', 'transparent'],
-    borderBottom: [5, 'solid', 'transparent'],
-    borderRight: [5, 'solid', RegentStBlueColor],
-  },
 })
 
 const PrevIssueBtn = (props) => {
-  const { getPrevIssue } = props
+  const { showPrevIssue } = props
 
   const classes = useStyles()
   return (
-    <button className={classes.prev_issue_btn} onClick={getPrevIssue}>
-      <span className={classes.arrow_left} />
+    <button className={classes.prevIssueBtn} onClick={showPrevIssue}>
+      <i>
+        <ArrowLeft />
+      </i>
     </button>
   )
 }

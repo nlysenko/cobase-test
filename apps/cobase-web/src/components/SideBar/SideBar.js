@@ -29,7 +29,7 @@ const useStyles = createUseStyles({
     overflow: 'scroll',
   },
 
-  sidebar_open: {
+  sideBarIsOpen: {
     left: 0,
     transition: '0.5s',
   },
@@ -38,7 +38,7 @@ const useStyles = createUseStyles({
 const SideBar = (props) => {
   const [progressIsOpen, setProgressIsOpen] = useState(false)
 
-  const { sideBarIsOpen } = props
+  const { sideBarIsOpen, taskIndex } = props
 
   const usePageViews = () => {
     let location = useLocation()
@@ -54,14 +54,14 @@ const SideBar = (props) => {
   return (
     <div
       className={`${classes.sidebar} ${
-        sideBarIsOpen ? classes.sidebar_open : ''
+        sideBarIsOpen ? classes.sideBarIsOpen : ''
       }`}
     >
       <SideBarHeader />
 
       <SideBarMenu />
 
-      {progressIsOpen ? <Progress /> : false}
+      {progressIsOpen ? <Progress taskIndex={taskIndex} /> : false}
 
       <SideBarFooter />
     </div>

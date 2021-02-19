@@ -7,12 +7,12 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 
-import AddBtn from 'shared/buttons/AddBtn'
+import Add from 'shared/icons/Add'
 
 import { BlackSqueezeColor, RhinoColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  wrapper: {
+  gallery: {
     borderTop: [1, 'solid', BlackSqueezeColor],
     padding: {
       top: 18,
@@ -34,7 +34,7 @@ const useStyles = createUseStyles({
     color: RhinoColor,
   },
 
-  images_list: {
+  galleryList: {
     display: 'flex',
     flexWrap: 'wrap',
     marginTop: 16,
@@ -61,14 +61,14 @@ const Gallery = (props) => {
 
   const classes = useStyles()
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.gallery}>
       <div className={classes.inner}>
         <h3 className={classes.title}>Gallery</h3>
 
-        <AddBtn />
+        <Add />
       </div>
 
-      <ul className={classes.images_list}>
+      <ul className={classes.galleryList}>
         {arr.map((img, i) => (
           <li className={classes.item} key={i}>
             <img

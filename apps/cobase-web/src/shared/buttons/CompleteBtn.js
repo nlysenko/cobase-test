@@ -6,6 +6,12 @@
 
 import React from 'react'
 import { createUseStyles } from 'react-jss'
+import { connect } from 'react-redux'
+
+import { setTaskCompleted, setLastUpdateTime } from 'app/redux/actions'
+
+import playAudioMelody from 'shared/audio/playAudioMelody.js'
+import taskCompletedAudio from 'assets/mp3/task-completed.mp3'
 
 import { ReactComponent as CompleteIcon } from 'assets/svg/complete-icon.svg'
 
@@ -14,10 +20,12 @@ import {
   EmeraldColor,
   WhiteColor,
   AtlantisColor,
+  JavaColor,
+  ForestGreenColor,
 } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  complete_btn: {
+  completeBtn: {
     width: 143,
     height: 42,
     paddingLeft: 20,
@@ -32,8 +40,17 @@ const useStyles = createUseStyles({
       outline: 'none',
     },
 
+    '&:active': {
+      background: ForestGreenColor,
+    },
+
     '&:hover': {
       background: AtlantisColor,
+    },
+
+    '&:disabled': {
+      background: JavaColor,
+      cursor: 'not-allowed',
     },
   },
 
@@ -46,16 +63,40 @@ const useStyles = createUseStyles({
 })
 
 const CompleteBtn = (props) => {
-  const { completeTask } = props
+  const {
+    taskIndex,
+    taskIsCompleted,
+    setTaskCompleted,
+    setLastUpdateTime,
+  } = props
+
+  const completeAllSubtasks = () => {
+    setTaskCompleted(taskIndex)
+
+    setLastUpdateTime(taskIndex, Date.now())
+
+    playAudioMelody(taskCompletedAudio)
+  }
 
   const classes = useStyles()
   return (
-    <button className={classes.complete_btn} onClick={completeTask}>
+    <button
+      className={classes.completeBtn}
+      onClick={completeAllSubtasks}
+      disabled={taskIsCompleted}
+    >
       <CompleteIcon />
 
-      <span className={classes.title}>Complete</span>
+      <span className={classes.title}>
+        {taskIsCompleted ? 'Completed' : 'Complete'}
+      </span>
     </button>
   )
 }
 
-export default CompleteBtn
+const mapDispatchToProps = {
+  setTaskCompleted: setTaskCompleted,
+  setLastUpdateTime: setLastUpdateTime,
+}
+
+export default connect(null, mapDispatchToProps)(CompleteBtn)

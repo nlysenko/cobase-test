@@ -5,8 +5,18 @@
  */
 
 import React from 'react'
-import { Switch } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { createUseStyles } from 'react-jss'
+
+import Home from 'pages/Home'
+import Overview from 'pages/Overview'
+import TaskManager from 'pages/TaskManager'
+import Drawings from 'pages/Drawings'
+import Employees from 'pages/Employees'
+import Reports from 'pages/Reports'
+import Projects from 'pages/Projects'
+import People from 'pages/People'
+import Team from 'pages/Team'
 
 import { WhiteColor, BgColor, BaliHaiColor } from 'shared/styles/colors'
 
@@ -20,7 +30,7 @@ const useStyles = createUseStyles({
     overflow: 'scroll',
   },
 
-  sidebar_open_inner: {
+  sideBarOpenInner: {
     width: 1920,
     height: 960,
     backgroundColor: BgColor,
@@ -31,7 +41,7 @@ const useStyles = createUseStyles({
     transition: '0.5s',
   },
 
-  sidebar_closed_inner: {
+  sideBarClosedInner: {
     width: 1920,
     minHeight: 1200,
     backgroundColor: BgColor,
@@ -78,7 +88,7 @@ const useStyles = createUseStyles({
 })
 
 const MainPage = (props) => {
-  const { sideBarIsOpen } = props
+  const { sideBarIsOpen, taskIndex, nextIssue, prevIssue } = props
 
   const classes = useStyles()
 
@@ -86,9 +96,7 @@ const MainPage = (props) => {
     <div className={classes.wrapper}>
       <div
         className={`${
-          sideBarIsOpen
-            ? classes.sidebar_open_inner
-            : classes.sidebar_closed_inner
+          sideBarIsOpen ? classes.sideBarOpenInner : classes.sideBarClosedInner
         }`}
       >
         <div
@@ -98,7 +106,29 @@ const MainPage = (props) => {
               : classes.sidebar_closed_page
           }`}
         >
-          <Switch>{props.children}</Switch>
+          <Switch>
+            <Route exact path="/" component={Home} />,
+            <Route exact path="/overview" component={Overview} />,
+            <Route
+              exact
+              path="/task-manager"
+              render={() => (
+                <TaskManager
+                  taskIndex={taskIndex}
+                  nextIssue={nextIssue}
+                  prevIssue={prevIssue}
+                />
+              )}
+            />
+            ,
+            <Route exact path="/drawings" component={Drawings} />,
+            <Route exact path="/employees" component={Employees} />,
+            <Route exact path="/reports" component={Reports} />,
+            <Route exact path="/reports" component={Reports} />,
+            <Route exact path="/projects" component={Projects} />,
+            <Route exact path="/people" component={People} />,
+            <Route exact path="/team" component={Team} />,
+          </Switch>
         </div>
       </div>
     </div>

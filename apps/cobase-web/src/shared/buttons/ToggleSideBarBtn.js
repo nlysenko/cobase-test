@@ -7,10 +7,10 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 
-import { WhiteColor } from 'shared/styles/colors'
+import { WhiteColor, LilyWhiteColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  toggle_btn: {
+  toggleBtn: {
     display: 'none',
     flexDirection: 'column',
     width: 30,
@@ -22,6 +22,10 @@ const useStyles = createUseStyles({
 
     '@media (max-width: 767px)': {
       display: 'flex',
+    },
+
+    '&:hover $line': {
+      backgroundColor: LilyWhiteColor,
     },
   },
 
@@ -43,7 +47,7 @@ const ToggleSideBarBtn = (props) => {
   const { toggleSideBar } = props
 
   return (
-    <button className={classes.toggle_btn} onClick={toggleSideBar}>
+    <button className={classes.toggleBtn} onClick={toggleSideBar}>
       <i className={classes.line} />
 
       <i className={classes.line} />

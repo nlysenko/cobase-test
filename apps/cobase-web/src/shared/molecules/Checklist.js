@@ -8,9 +8,11 @@ import React from 'react'
 import { createUseStyles } from 'react-jss'
 import { connect } from 'react-redux'
 
-import { toggleSubtask } from 'app/redux/actions'
+import { toggleSubtask, setLastUpdateTime } from 'app/redux/actions'
 
-import AddBtn from 'shared/buttons/AddBtn'
+import Add from 'shared/icons/Add'
+
+import { ReactComponent as Tick } from 'assets/svg/checkbox.svg'
 
 import playAudioMelody from 'shared/audio/playAudioMelody.js'
 import subtaskCheckedAudio from 'assets/mp3/checkbox-checked.mp3'
@@ -18,12 +20,15 @@ import subtaskCheckedAudio from 'assets/mp3/checkbox-checked.mp3'
 import {
   BlackSqueezeColor,
   RhinoColor,
+  AzureRadianceColor,
+  LochmaraColor,
   FiordColor,
+  PeriwinkleGrayColor,
   NepalColor,
 } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  wrapper: {
+  checklist: {
     borderTop: [1, 'solid', BlackSqueezeColor],
     paddingTop: 17,
     order: '5',
@@ -43,7 +48,7 @@ const useStyles = createUseStyles({
     color: RhinoColor,
   },
 
-  subtasks_list: {
+  subtasksList: {
     marginTop: 22,
   },
 
@@ -54,11 +59,43 @@ const useStyles = createUseStyles({
   },
 
   subtask: {
-    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+  },
 
-    '&:checked+$name': {
-      color: NepalColor,
+  customСheckbox: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 18,
+    height: 18,
+    border: [1, 'solid', PeriwinkleGrayColor],
+    borderRadius: '4px',
+    cursor: 'pointer',
+  },
+
+  hidden: {
+    display: 'none',
+
+    '&:checked + i': {
+      borderColor: LochmaraColor,
+      background: AzureRadianceColor,
+    },
+
+    '&:disabled + i': {
+      borderColor: PeriwinkleGrayColor,
+      background: PeriwinkleGrayColor,
+      cursor: 'unset',
+    },
+
+    '&:checked ~ span': {
       textDecoration: 'line-through',
+      color: NepalColor,
+    },
+
+    '&:disabled ~ span': {
+      color: PeriwinkleGrayColor,
+      cursor: 'unset',
     },
   },
 
@@ -71,38 +108,51 @@ const useStyles = createUseStyles({
 })
 
 const Checklist = (props) => {
-  const { subtasks, taskId } = props
+  const {
+    subtasks,
+    taskIndex,
+    toggleSubtask,
+    taskOnPause,
+    setLastUpdateTime,
+  } = props
 
   const switchSubtask = (event) => {
-    const subtaskId = event.target.id
+    const subTaskId = event.target.id
+
+    toggleSubtask(taskIndex, subTaskId)
+
+    setLastUpdateTime(taskIndex, Date.now())
 
     playAudioMelody(subtaskCheckedAudio)
-
-    return props.toggleSubtask(taskId, subtaskId)
   }
 
   const classes = useStyles()
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.checklist}>
       <div className={classes.inner}>
         <h3 className={classes.title}>Checklist</h3>
 
-        <AddBtn />
+        <Add />
       </div>
 
-      <ul className={classes.subtasks_list}>
+      <ul className={classes.subtasksList}>
         {subtasks.map((subtask, i) => (
           <li className={classes.item} key={i}>
-            <input
-              className={classes.subtask}
-              type="checkbox"
-              id={subtask.id}
-              onChange={switchSubtask}
-              checked={subtask.completed}
-            />
+            <label className={classes.subtask} htmlFor={subtask.id}>
+              <input
+                className={classes.hidden}
+                type="checkbox"
+                id={subtask.id}
+                onChange={switchSubtask}
+                checked={subtask.completed}
+                disabled={taskOnPause}
+              />
 
-            <label className={classes.name} htmlFor={subtask.id}>
-              {subtask.name}
+              <i className={classes.customСheckbox}>
+                {subtask.completed ? <Tick className={classes.tick} /> : false}
+              </i>
+
+              <span className={classes.name}>{subtask.name}</span>
             </label>
           </li>
         ))}
@@ -113,12 +163,7 @@ const Checklist = (props) => {
 
 const mapDispatchToProps = {
   toggleSubtask: toggleSubtask,
+  setLastUpdateTime: setLastUpdateTime,
 }
 
-const mapStateToProps = function(state) {
-  return {
-    tasks: state.tasks,
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Checklist)
+export default connect(null, mapDispatchToProps)(Checklist)

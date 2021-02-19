@@ -4,23 +4,48 @@
  *
  */
 
-import { TOGGLE_TASK, TOGGLE_SUBTASK } from './constans'
+import {
+  TOGGLE_SUBTASK,
+  SET_TASK_COMPLETED,
+  UPDATE_TASK_PROGRESS,
+  SET_LAST_UPDATE_TIME,
+} from './constans'
 
-export const toggleTask = (count) => {
+export const toggleSubtask = (taskIndex, subTaskId) => {
   return {
-    type: TOGGLE_TASK,
+    type: TOGGLE_SUBTASK,
     payload: {
-      count,
+      taskIndex,
+      subTaskId,
     },
   }
 }
 
-export const toggleSubtask = (taskId, subTaskId) => {
+export const setTaskCompleted = (taskIndex) => {
   return {
-    type: TOGGLE_SUBTASK,
+    type: SET_TASK_COMPLETED,
     payload: {
-      taskId,
-      subTaskId,
+      taskIndex,
+    },
+  }
+}
+
+export const updateProgress = (taskIndex, progress) => {
+  return {
+    type: UPDATE_TASK_PROGRESS,
+    payload: {
+      taskIndex,
+      progress,
+    },
+  }
+}
+
+export const setLastUpdateTime = (taskIndex, timestamp) => {
+  return {
+    type: SET_LAST_UPDATE_TIME,
+    payload: {
+      taskIndex,
+      timestamp,
     },
   }
 }

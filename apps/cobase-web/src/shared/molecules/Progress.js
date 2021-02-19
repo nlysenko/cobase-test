@@ -8,17 +8,19 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createUseStyles } from 'react-jss'
 
+import getNumberCompletedSubtasks from 'shared/js/getNumberCompletedSubtasks'
+
 import {
   NepalColor,
   WhiteColor,
   WaikawaGrayColor,
-  PortageColor,
+  AzureRadianceColor,
   JavaColor,
   FrenchPassColor,
 } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  wrapper: {
+  progressBar: {
     paddingLeft: 30,
   },
 
@@ -36,13 +38,13 @@ const useStyles = createUseStyles({
     marginTop: 8,
   },
 
-  progressbar_wrapper: {
+  progressBarWrapper: {
     height: 26,
     display: 'flex',
     alignItems: 'center',
   },
 
-  task_progressbar: {
+  taskProgressBar: {
     display: 'inline-block',
     width: 161,
     height: 6,
@@ -50,19 +52,19 @@ const useStyles = createUseStyles({
     backgroundColor: WaikawaGrayColor,
   },
 
-  overal_progressbar: {
-    composes: '$task_progressbar',
+  overalProgressBar: {
+    composes: '$taskProgressBar',
     backgroundColor: FrenchPassColor,
   },
 
-  task_progress: {
+  taskProgress: {
     height: '100%',
-    backgroundColor: PortageColor,
+    backgroundColor: AzureRadianceColor,
     borderRadius: 100,
   },
 
-  overal_progress: {
-    composes: '$task_progress',
+  overalProgress: {
+    composes: '$taskProgress',
     backgroundColor: JavaColor,
     width: 0,
   },
@@ -75,19 +77,13 @@ const useStyles = createUseStyles({
 })
 
 const Progress = (props) => {
-  const { task, tasks } = props
+  const { taskIndex, tasks } = props
 
-  const getNumberCompletedSubtasks = (arr) => {
-    return arr.reduce((sum, subtask) => {
-      return sum + subtask.completed
-    }, 0)
-  }
-
-  const overallSubtasks = tasks.reduce((arr, task) => {
+  const overallSubtasks = Object.values(tasks).reduce((arr, task) => {
     return arr.concat(task.subtasks)
   }, [])
 
-  const currentSubtasks = task.subtasks
+  const currentSubtasks = tasks[taskIndex].subtasks
 
   const taskProgress =
     (getNumberCompletedSubtasks(currentSubtasks) / currentSubtasks.length) * 100
@@ -107,14 +103,14 @@ const Progress = (props) => {
 
   const classes = useStyles()
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.progressBar}>
       <h3 className={classes.title}>PROGRESS</h3>
 
       <span className={classes.name}>Task</span>
 
-      <div className={classes.progressbar_wrapper}>
-        <div className={classes.task_progressbar}>
-          <div className={classes.task_progress} style={taskProgressStyle} />
+      <div className={classes.progressBarWrapper}>
+        <div className={classes.taskProgressBar}>
+          <div className={classes.taskProgress} style={taskProgressStyle} />
         </div>
 
         <span className={classes.indicator}>{+taskProgress.toFixed(2)}</span>
@@ -122,10 +118,10 @@ const Progress = (props) => {
 
       <span className={classes.name}>Overal project</span>
 
-      <div className={classes.progressbar_wrapper}>
-        <div className={classes.overal_progressbar}>
+      <div className={classes.progressBarWrapper}>
+        <div className={classes.overalProgressBar}>
           <div
-            className={classes.overal_progress}
+            className={classes.overalProgress}
             style={projectProgressStyle}
           />
         </div>
@@ -139,7 +135,6 @@ const Progress = (props) => {
 const mapStateToProps = function(state) {
   return {
     tasks: state.tasks,
-    task: state.task,
   }
 }
 

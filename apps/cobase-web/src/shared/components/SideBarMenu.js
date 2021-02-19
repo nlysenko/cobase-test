@@ -7,6 +7,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { createUseStyles } from 'react-jss'
+import { connect } from 'react-redux'
 
 import playAudioMelody from 'shared/audio/playAudioMelody'
 import OpenNewPageMelody from 'assets/mp3/open-page.mp3'
@@ -38,18 +39,18 @@ const useStyles = createUseStyles({
     paddingTop: 10,
   },
 
-  nav_link: {
+  navLink: {
     display: 'flex',
     alignItems: 'center',
     height: 68,
     paddingLeft: 30,
   },
 
-  nav_link_selected: {
+  navLinkIsSelected: {
     backgroundColor: FrenchPassColor,
   },
 
-  link_inner: {
+  linkInner: {
     display: 'flex',
     flexDirection: 'column',
     paddingLeft: 15,
@@ -65,9 +66,12 @@ const useStyles = createUseStyles({
   },
 })
 
-const SideBarMenu = () => {
-  const classes = useStyles()
+const SideBarMenu = (props) => {
+  const { tasks } = props
 
+  const newTasks = Object.keys(tasks).length
+
+  const classes = useStyles()
   return (
     <div className={classes.menu}>
       <h3 className={classes.title}>MENU</h3>
@@ -76,14 +80,14 @@ const SideBarMenu = () => {
         <ul className={classes.list}>
           <li className={classes.item}>
             <NavLink
-              className={classes.nav_link}
-              activeClassName={classes.nav_link_selected}
+              className={classes.navLink}
+              activeClassName={classes.navLinkIsSelected}
               to="/overview"
               onClick={() => playAudioMelody(OpenNewPageMelody)}
             >
               <BlueCompleteIcon />
 
-              <span className={classes.link_inner}>
+              <span className={classes.linkInner}>
                 <span className={classes.name}>Overview</span>
 
                 <span className={classes.indicator}>6 updates</span>
@@ -93,31 +97,33 @@ const SideBarMenu = () => {
 
           <li className={classes.item}>
             <NavLink
-              className={classes.nav_link}
-              activeClassName={classes.nav_link_selected}
+              className={classes.navLink}
+              activeClassName={classes.navLinkIsSelected}
               to="/task-manager"
               onClick={() => playAudioMelody(OpenNewPageMelody)}
             >
               <GreenTaskIcon />
 
-              <span className={classes.link_inner}>
+              <span className={classes.linkInner}>
                 <span className={classes.name}>Task manager</span>
 
-                <span className={classes.indicator}>23 new tasks</span>
+                <span className={classes.indicator}>{`${newTasks} new ${
+                  newTasks === 1 ? 'task' : 'tasks'
+                }`}</span>
               </span>
             </NavLink>
           </li>
 
           <li className={classes.item}>
             <NavLink
-              className={classes.nav_link}
-              activeClassName={classes.nav_link_selected}
+              className={classes.navLink}
+              activeClassName={classes.navLinkIsSelected}
               to="/drawings"
               onClick={() => playAudioMelody(OpenNewPageMelody)}
             >
               <PurpleTasksIcon />
 
-              <span className={classes.link_inner}>
+              <span className={classes.linkInner}>
                 <span className={classes.name}>Drawings</span>
 
                 <span className={classes.indicator}>123 pages</span>
@@ -127,14 +133,14 @@ const SideBarMenu = () => {
 
           <li className={classes.item}>
             <NavLink
-              className={classes.nav_link}
-              activeClassName={classes.nav_link_selected}
+              className={classes.navLink}
+              activeClassName={classes.navLinkIsSelected}
               to="/employees"
               onClick={() => playAudioMelody(OpenNewPageMelody)}
             >
               <YellowAssignIcon />
 
-              <span className={classes.link_inner}>
+              <span className={classes.linkInner}>
                 <span className={classes.name}>Employees</span>
 
                 <span className={classes.indicator}>2 new guys</span>
@@ -144,14 +150,14 @@ const SideBarMenu = () => {
 
           <li className={classes.item}>
             <NavLink
-              className={classes.nav_link}
-              activeClassName={classes.nav_link_selected}
+              className={classes.navLink}
+              activeClassName={classes.navLinkIsSelected}
               to="/reports"
               onClick={() => playAudioMelody(OpenNewPageMelody)}
             >
               <OrangeIcon />
 
-              <span className={classes.link_inner}>
+              <span className={classes.linkInner}>
                 <span className={classes.name}>Reports</span>
 
                 <span className={classes.indicator}>4 new</span>
@@ -164,4 +170,10 @@ const SideBarMenu = () => {
   )
 }
 
-export default SideBarMenu
+const mapStateToProps = function(state) {
+  return {
+    tasks: state.tasks,
+  }
+}
+
+export default connect(mapStateToProps)(SideBarMenu)

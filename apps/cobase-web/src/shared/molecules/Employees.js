@@ -7,10 +7,16 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 
-import NewEmployeeBtn from 'shared/buttons/NewEmployeeBtn'
+import {
+  AppleColor,
+  EmeraldColor,
+  AtlantisColor,
+  WhiteColor,
+  ForestGreenColor,
+} from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  wrapper: {
+  employees: {
     display: 'flex',
     padding: {
       top: 17,
@@ -19,7 +25,7 @@ const useStyles = createUseStyles({
     order: '2',
   },
 
-  employees_list: {
+  employeesList: {
     display: 'flex',
   },
 
@@ -27,11 +33,37 @@ const useStyles = createUseStyles({
     marginRight: 5,
   },
 
-  employee_avatar: {
+  avatar: {
     display: 'block',
     width: 28,
     height: 28,
     cursor: 'pointer',
+  },
+
+  icon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: AppleColor,
+    borderRadius: 8,
+    border: [1, 'solid', EmeraldColor],
+    width: 28,
+    height: 28,
+    cursor: 'pointer',
+
+    '&:hover': {
+      background: AtlantisColor,
+    },
+
+    '&:active': {
+      background: ForestGreenColor,
+    },
+  },
+
+  plusOne: {
+    fontSize: 13,
+    fontStyle: 'normal',
+    color: WhiteColor,
   },
 })
 
@@ -40,12 +72,12 @@ const Employees = (props) => {
 
   const classes = useStyles()
   return (
-    <div className={classes.wrapper}>
-      <ul className={classes.employees_list}>
+    <div className={classes.employees}>
+      <ul className={classes.employeesList}>
         {employees.map((employee, i) => (
           <li className={classes.employee} key={i}>
             <img
-              className={classes.employee_avatar}
+              className={classes.avatar}
               src={process.env.PUBLIC_URL + employee}
               alt="avatar"
             />
@@ -53,7 +85,9 @@ const Employees = (props) => {
         ))}
       </ul>
 
-      <NewEmployeeBtn />
+      <i className={classes.icon}>
+        <span className={classes.plusOne}>+1</span>
+      </i>
     </div>
   )
 }

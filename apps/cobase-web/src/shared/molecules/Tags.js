@@ -7,7 +7,7 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 
-import AddBtn from 'shared/buttons/AddBtn'
+import Add from 'shared/icons/Add'
 
 import {
   BlackSqueezeColor,
@@ -17,7 +17,7 @@ import {
 } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  wrapper: {
+  tags: {
     borderTop: [1, 'solid', BlackSqueezeColor],
     padding: {
       top: 17,
@@ -39,7 +39,7 @@ const useStyles = createUseStyles({
     color: RhinoColor,
   },
 
-  tags_list: {
+  tagsList: {
     paddingTop: 16,
     display: 'flex',
     flexWrap: 'wrap',
@@ -59,7 +59,7 @@ const useStyles = createUseStyles({
     },
   },
 
-  tag_name: {
+  tagName: {
     color: AzureRadianceColor,
     fontSize: 15,
   },
@@ -70,17 +70,17 @@ const Tags = (props) => {
 
   const classes = useStyles()
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.tags}>
       <div className={classes.inner}>
         <h3 className={classes.title}>Tags</h3>
 
-        <AddBtn />
+        <Add />
       </div>
 
-      <ul className={classes.tags_list}>
+      <ul className={classes.tagsList}>
         {arr.map((tag, i) => (
           <li className={classes.item} key={i}>
-            <span className={classes.tag_name}>{tag}</span>
+            <span className={classes.tagName}>{tag}</span>
           </li>
         ))}
       </ul>

@@ -1,21 +1,22 @@
 /**
  *
- * TaskProgress
+ * Status
  *
  */
 
 import React, { useState, useEffect } from 'react'
 import { createUseStyles } from 'react-jss'
+import humanizeDuration from 'humanize-duration'
 
 import {
-  PortageColor,
+  AzureRadianceColor,
   FiordColor,
   AppleColor,
   NepalColor,
 } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  wrapper: {
+  status: {
     display: 'flex',
     alignItems: 'center',
     flexGrow: '1',
@@ -37,9 +38,9 @@ const useStyles = createUseStyles({
     borderRadius: 120,
   },
 
-  inprocess: {
-    color: PortageColor,
-    border: [1, 'solid', PortageColor],
+  inProcess: {
+    color: AzureRadianceColor,
+    border: [1, 'solid', AzureRadianceColor],
   },
 
   paused: {
@@ -52,7 +53,7 @@ const useStyles = createUseStyles({
     border: [1, 'solid', AppleColor],
   },
 
-  name: {
+  title: {
     fontSize: 13,
   },
 
@@ -63,43 +64,55 @@ const useStyles = createUseStyles({
   },
 })
 
-const TaskProgress = (props) => {
-  const { subtasks, taskId, taskPaused } = props
+const Status = (props) => {
+  const { progress, lastUpdatedTime } = props
 
-  const [progress, setProgress] = useState('In process')
+  const showLaskUpdatedTaskTime = humanizeDuration.humanizer({
+    units: ['m'],
+    round: true,
+    spacer: '',
+    language: 'shortEn',
+    languages: {
+      shortEn: {
+        m: () => 'm ago',
+      },
+    },
+  })
+
+  const [currentTime, setCurrentTime] = useState(Date.now())
 
   useEffect(() => {
-    const currentSubtasks = subtasks.length
-    const completedSubtasks = subtasks.filter((subtask) => subtask.completed)
-      .length
+    let timer = setInterval(() => tick(), 1000)
 
-    if (taskPaused) {
-      setProgress('Paused')
-    } else if (!taskPaused && currentSubtasks === completedSubtasks) {
-      setProgress('Completed')
-    } else {
-      setProgress('In process')
+    return function cleanup() {
+      clearInterval(timer)
     }
-  }, [subtasks, taskPaused])
+  })
+
+  function tick() {
+    setCurrentTime(Date.now())
+  }
 
   const classes = useStyles()
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.status}>
       <div
         className={`${classes.progress} ${
           progress === 'In process'
-            ? classes.inprocess
+            ? classes.inProcess
             : progress === 'Completed'
             ? classes.completed
             : classes.paused
         }`}
       >
-        <span className={classes.name}>{progress}</span>
+        <span className={classes.title}>{progress}</span>
       </div>
 
-      <span className={classes.time}>15m ago</span>
+      <span className={classes.time}>
+        {showLaskUpdatedTaskTime(currentTime - lastUpdatedTime)}
+      </span>
     </div>
   )
 }
 
-export default TaskProgress
+export default Status
