@@ -7,6 +7,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { createUseStyles } from 'react-jss'
+import { connect } from 'react-redux'
 
 import playAudioMelody from 'shared/audio/playAudioMelody'
 import OpenNewPageMelody from 'assets/mp3/open-page.mp3'
@@ -65,9 +66,12 @@ const useStyles = createUseStyles({
   },
 })
 
-const SideBarMenu = () => {
-  const classes = useStyles()
+const SideBarMenu = (props) => {
+  const { tasks } = props
 
+  const newTasks = Object.keys(tasks).length
+
+  const classes = useStyles()
   return (
     <div className={classes.menu}>
       <h3 className={classes.title}>MENU</h3>
@@ -103,7 +107,9 @@ const SideBarMenu = () => {
               <span className={classes.linkInner}>
                 <span className={classes.name}>Task manager</span>
 
-                <span className={classes.indicator}>23 new tasks</span>
+                <span className={classes.indicator}>{`${newTasks} new ${
+                  newTasks === 1 ? 'task' : 'tasks'
+                }`}</span>
               </span>
             </NavLink>
           </li>
@@ -164,4 +170,10 @@ const SideBarMenu = () => {
   )
 }
 
-export default SideBarMenu
+const mapStateToProps = function(state) {
+  return {
+    tasks: state.tasks,
+  }
+}
+
+export default connect(mapStateToProps)(SideBarMenu)
