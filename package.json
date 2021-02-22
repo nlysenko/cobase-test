@@ -1,6 +1,7 @@
 {
   "scripts": {
     "web:start": "cd apps/cobase-web/ && npm start",
-    "web:deploy": "cd apps/cobase-web/ && npm run deploy"
+    "web:deploy": "cd apps/cobase-web/ && npm run deploy",
+    "web:build": "cd apps/cobase-web/ && npm run build"
   }
 }

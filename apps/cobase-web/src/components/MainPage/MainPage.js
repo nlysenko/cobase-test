@@ -62,7 +62,7 @@ const useStyles = createUseStyles({
     },
   },
 
-  sidebar_open_page: {
+  sidebarIsOpenPage: {
     width: 780,
     minHeight: 828,
     paddingBottom: 24,
@@ -72,7 +72,7 @@ const useStyles = createUseStyles({
     transition: '0.5s',
   },
 
-  sidebar_closed_page: {
+  sidebarIsClosedPage: {
     width: 780,
     minHeight: 828,
     paddingBottom: 24,
@@ -102,8 +102,8 @@ const MainPage = (props) => {
         <div
           className={`${
             sideBarIsOpen
-              ? classes.sidebar_open_page
-              : classes.sidebar_closed_page
+              ? classes.sidebarIsOpenPage
+              : classes.sidebarIsClosedPage
           }`}
         >
           <Switch>

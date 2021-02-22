@@ -109,7 +109,9 @@ const Status = (props) => {
       </div>
 
       <span className={classes.time}>
-        {showLaskUpdatedTaskTime(currentTime - lastUpdatedTime)}
+        {currentTime - lastUpdatedTime < 60000
+          ? 'now'
+          : showLaskUpdatedTaskTime(currentTime - lastUpdatedTime)}
       </span>
     </div>
   )
