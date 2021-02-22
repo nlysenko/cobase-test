@@ -12,13 +12,22 @@ import { connect } from 'react-redux'
 import playAudioMelody from 'shared/audio/playAudioMelody'
 import OpenNewPageMelody from 'assets/mp3/open-page.mp3'
 
-import { ReactComponent as BlueCompleteIcon } from 'assets/svg/blue-complete.svg'
-import { ReactComponent as GreenTaskIcon } from 'assets/svg/green-task.svg'
-import { ReactComponent as PurpleTasksIcon } from 'assets/svg/purple-tasks.svg'
-import { ReactComponent as YellowAssignIcon } from 'assets/svg/yellow-assign.svg'
-import { ReactComponent as OrangeIcon } from 'assets/svg/orange.svg'
+import { ReactComponent as OverviewIcon } from 'assets/svg/overview-icon.svg'
+import { ReactComponent as TaskManagerIcon } from 'assets/svg/task-manager-icon.svg'
+import { ReactComponent as DrawingsIcon } from 'assets/svg/drawings-icon.svg'
+import { ReactComponent as EmployeesIcon } from 'assets/svg/employees-icon.svg'
+import { ReactComponent as ReportsIcon } from 'assets/svg/reports-icon.svg'
 
-import { NepalColor, FrenchPassColor } from 'shared/styles/colors'
+import {
+  WhiteColor,
+  NepalColor,
+  FrenchPassColor,
+  AquaColor,
+  YellowGreenColor,
+  PortageColor,
+  SupernovaColor,
+  PumpkinColor,
+} from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
   menu: {
@@ -39,21 +48,82 @@ const useStyles = createUseStyles({
     paddingTop: 10,
   },
 
-  navLink: {
+  item: {
     display: 'flex',
     alignItems: 'center',
     height: 68,
     paddingLeft: 30,
   },
 
-  navLinkIsSelected: {
+  active: {
     backgroundColor: FrenchPassColor,
+
+    '& $icon': {
+      '&:after': {
+        opacity: 1,
+      },
+    },
+
+    '& $icon path': {
+      fill: WhiteColor,
+    },
   },
 
-  linkInner: {
+  inner: {
     display: 'flex',
     flexDirection: 'column',
     paddingLeft: 15,
+  },
+
+  icon: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 48,
+    height: 48,
+
+    '&:after': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      borderRadius: 12,
+      zIndex: '-1',
+      opacity: '0.2',
+    },
+  },
+
+  overview: {
+    '&:after': {
+      background: AquaColor,
+    },
+  },
+
+  tasks: {
+    '&:after': {
+      background: YellowGreenColor,
+    },
+  },
+
+  drawings: {
+    '&:after': {
+      background: PortageColor,
+    },
+  },
+
+  employees: {
+    '&:after': {
+      background: SupernovaColor,
+    },
+  },
+
+  reports: {
+    '&:after': {
+      background: PumpkinColor,
+    },
   },
 
   name: {
@@ -78,16 +148,18 @@ const SideBarMenu = (props) => {
 
       <nav className={classes.navbar}>
         <ul className={classes.list}>
-          <li className={classes.item}>
+          <li>
             <NavLink
-              className={classes.navLink}
-              activeClassName={classes.navLinkIsSelected}
+              className={classes.item}
+              activeClassName={classes.active}
               to="/overview"
               onClick={() => playAudioMelody(OpenNewPageMelody)}
             >
-              <BlueCompleteIcon />
+              <i className={`${classes.icon} ${classes.overview}`}>
+                <OverviewIcon />
+              </i>
 
-              <span className={classes.linkInner}>
+              <span className={classes.inner}>
                 <span className={classes.name}>Overview</span>
 
                 <span className={classes.indicator}>6 updates</span>
@@ -95,16 +167,18 @@ const SideBarMenu = (props) => {
             </NavLink>
           </li>
 
-          <li className={classes.item}>
+          <li>
             <NavLink
-              className={classes.navLink}
-              activeClassName={classes.navLinkIsSelected}
+              className={classes.item}
+              activeClassName={classes.active}
               to="/task-manager"
               onClick={() => playAudioMelody(OpenNewPageMelody)}
             >
-              <GreenTaskIcon />
+              <i className={`${classes.icon} ${classes.tasks}`}>
+                <TaskManagerIcon />
+              </i>
 
-              <span className={classes.linkInner}>
+              <span className={classes.inner}>
                 <span className={classes.name}>Task manager</span>
 
                 <span className={classes.indicator}>{`${newTasks} new ${
@@ -114,16 +188,18 @@ const SideBarMenu = (props) => {
             </NavLink>
           </li>
 
-          <li className={classes.item}>
+          <li>
             <NavLink
-              className={classes.navLink}
-              activeClassName={classes.navLinkIsSelected}
+              className={classes.item}
+              activeClassName={classes.active}
               to="/drawings"
               onClick={() => playAudioMelody(OpenNewPageMelody)}
             >
-              <PurpleTasksIcon />
+              <i className={`${classes.icon} ${classes.drawings}`}>
+                <DrawingsIcon />
+              </i>
 
-              <span className={classes.linkInner}>
+              <span className={classes.inner}>
                 <span className={classes.name}>Drawings</span>
 
                 <span className={classes.indicator}>123 pages</span>
@@ -131,16 +207,18 @@ const SideBarMenu = (props) => {
             </NavLink>
           </li>
 
-          <li className={classes.item}>
+          <li>
             <NavLink
-              className={classes.navLink}
-              activeClassName={classes.navLinkIsSelected}
+              className={classes.item}
+              activeClassName={classes.active}
               to="/employees"
               onClick={() => playAudioMelody(OpenNewPageMelody)}
             >
-              <YellowAssignIcon />
+              <i className={`${classes.icon} ${classes.employees}`}>
+                <EmployeesIcon />
+              </i>
 
-              <span className={classes.linkInner}>
+              <span className={classes.inner}>
                 <span className={classes.name}>Employees</span>
 
                 <span className={classes.indicator}>2 new guys</span>
@@ -148,16 +226,18 @@ const SideBarMenu = (props) => {
             </NavLink>
           </li>
 
-          <li className={classes.item}>
+          <li>
             <NavLink
-              className={classes.navLink}
-              activeClassName={classes.navLinkIsSelected}
+              className={classes.item}
+              activeClassName={classes.active}
               to="/reports"
               onClick={() => playAudioMelody(OpenNewPageMelody)}
             >
-              <OrangeIcon />
+              <i className={`${classes.icon} ${classes.reports}`}>
+                <ReportsIcon />
+              </i>
 
-              <span className={classes.linkInner}>
+              <span className={classes.inner}>
                 <span className={classes.name}>Reports</span>
 
                 <span className={classes.indicator}>4 new</span>
