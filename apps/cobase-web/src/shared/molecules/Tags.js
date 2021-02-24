@@ -13,7 +13,7 @@ import {
   BlackSqueezeColor,
   RhinoColor,
   LilyWhiteColor,
-  AzureRadianceColor,
+  AquaColor,
 } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
@@ -60,7 +60,7 @@ const useStyles = createUseStyles({
   },
 
   tagName: {
-    color: AzureRadianceColor,
+    color: AquaColor,
     fontSize: 15,
   },
 })

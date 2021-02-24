@@ -37,7 +37,7 @@ const useStyles = createUseStyles({
     },
   },
 
-  title: {
+  caption: {
     fontFamily: 'Heebo-Medium',
     color: NepalColor,
     fontSize: 11,
@@ -126,13 +126,14 @@ const useStyles = createUseStyles({
     },
   },
 
-  name: {
+  title: {
     fontSize: 15,
   },
 
-  indicator: {
+  subtitle: {
     color: NepalColor,
     fontSize: 13,
+    marginTop: -3,
   },
 })
 
@@ -144,7 +145,7 @@ const SideBarMenu = (props) => {
   const classes = useStyles()
   return (
     <div className={classes.menu}>
-      <h3 className={classes.title}>MENU</h3>
+      <h3 className={classes.caption}>MENU</h3>
 
       <nav className={classes.navbar}>
         <ul className={classes.list}>
@@ -160,9 +161,9 @@ const SideBarMenu = (props) => {
               </i>
 
               <span className={classes.inner}>
-                <span className={classes.name}>Overview</span>
+                <span className={classes.title}>Overview</span>
 
-                <span className={classes.indicator}>6 updates</span>
+                <span className={classes.subtitle}>6 updates</span>
               </span>
             </NavLink>
           </li>
@@ -179,9 +180,9 @@ const SideBarMenu = (props) => {
               </i>
 
               <span className={classes.inner}>
-                <span className={classes.name}>Task manager</span>
+                <span className={classes.title}>Task manager</span>
 
-                <span className={classes.indicator}>{`${newTasks} new ${
+                <span className={classes.subtitle}>{`${newTasks} new ${
                   newTasks === 1 ? 'task' : 'tasks'
                 }`}</span>
               </span>
@@ -200,9 +201,9 @@ const SideBarMenu = (props) => {
               </i>
 
               <span className={classes.inner}>
-                <span className={classes.name}>Drawings</span>
+                <span className={classes.title}>Drawings</span>
 
-                <span className={classes.indicator}>123 pages</span>
+                <span className={classes.subtitle}>123 pages</span>
               </span>
             </NavLink>
           </li>
@@ -219,9 +220,9 @@ const SideBarMenu = (props) => {
               </i>
 
               <span className={classes.inner}>
-                <span className={classes.name}>Employees</span>
+                <span className={classes.title}>Employees</span>
 
-                <span className={classes.indicator}>2 new guys</span>
+                <span className={classes.subtitle}>2 new guys</span>
               </span>
             </NavLink>
           </li>
@@ -238,9 +239,9 @@ const SideBarMenu = (props) => {
               </i>
 
               <span className={classes.inner}>
-                <span className={classes.name}>Reports</span>
+                <span className={classes.title}>Reports</span>
 
-                <span className={classes.indicator}>4 new</span>
+                <span className={classes.subtitle}>4 new</span>
               </span>
             </NavLink>
           </li>

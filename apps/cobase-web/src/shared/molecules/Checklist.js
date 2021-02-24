@@ -20,11 +20,11 @@ import subtaskCheckedAudio from 'assets/mp3/checkbox-checked.mp3'
 import {
   BlackSqueezeColor,
   RhinoColor,
-  AzureRadianceColor,
-  LochmaraColor,
+  AquaColor,
   FiordColor,
   PeriwinkleGrayColor,
   NepalColor,
+  EmeraldColor,
 } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
@@ -78,8 +78,8 @@ const useStyles = createUseStyles({
     display: 'none',
 
     '&:checked + i': {
-      borderColor: LochmaraColor,
-      background: AzureRadianceColor,
+      borderColor: EmeraldColor,
+      background: AquaColor,
     },
 
     '&:disabled + i': {

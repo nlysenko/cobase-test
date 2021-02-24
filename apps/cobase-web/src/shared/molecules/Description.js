@@ -9,12 +9,7 @@ import { createUseStyles } from 'react-jss'
 
 import { ReactComponent as GroupIcon } from 'assets/svg/group.svg'
 
-import {
-  RhinoColor,
-  FiordColor,
-  Lochmara1Color,
-  Lochmara2Color,
-} from 'shared/styles/colors'
+import { RhinoColor, FiordColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
   description: {
@@ -42,22 +37,8 @@ const useStyles = createUseStyles({
     },
   },
 
-  group: {
-    cursor: 'pointer',
-
-    '&:hover path': {
-      fill: Lochmara1Color,
-    },
-
-    '&:active path': {
-      fill: Lochmara2Color,
-    },
-  },
-
   about: {
     paddingTop: 8,
-    maxHeight: 55,
-    overflow: 'scroll',
     fontSize: 17,
     color: FiordColor,
   },
@@ -74,7 +55,7 @@ const Description = (props) => {
         <h1 className={classes.title}>{title}</h1>
 
         <i className={classes.icon}>
-          <GroupIcon className={classes.group} />
+          <GroupIcon />
         </i>
       </div>
 
