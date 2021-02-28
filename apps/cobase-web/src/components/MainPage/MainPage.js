@@ -51,7 +51,7 @@ const useStyles = createUseStyles({
     },
     transition: '0.5s',
 
-    '@media (max-width: 768px)': {
+    '@media (max-width: 769px)': {
       width: '100%',
       padding: {
         top: 72,
@@ -80,7 +80,7 @@ const useStyles = createUseStyles({
     border: [1, 'solid', BaliHaiColor],
     borderRadius: 4,
 
-    '@media (max-width: 768px)': {
+    '@media (max-width: 769px)': {
       width: '100%',
       transition: '0.5s',
     },

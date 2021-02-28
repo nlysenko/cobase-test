@@ -20,7 +20,7 @@ const useStyles = createUseStyles({
     background: 'inherit',
     cursor: 'pointer',
 
-    '@media (max-width: 767px)': {
+    '@media (max-width: 768px)': {
       display: 'flex',
     },
 

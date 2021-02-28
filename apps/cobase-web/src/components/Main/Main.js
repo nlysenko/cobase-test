@@ -37,7 +37,7 @@ const Main = (props) => {
 
   useEffect(() => {
     function handleResize() {
-      setSideBarOpen(window.innerWidth >= 768)
+      setSideBarOpen(window.innerWidth >= 769)
     }
 
     window.addEventListener('resize', handleResize)
@@ -47,7 +47,7 @@ const Main = (props) => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const [sideBarOpen, setSideBarOpen] = useState(window.innerWidth >= 768)
+  const [sideBarOpen, setSideBarOpen] = useState(window.innerWidth >= 769)
   const [taskIndex, setTaskIndex] = useState(0)
 
   const nextIssue = () => {

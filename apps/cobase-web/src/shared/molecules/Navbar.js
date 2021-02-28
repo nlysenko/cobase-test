@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
   navbarList: {
     display: 'flex',
 
-    '@media (max-width: 767px)': {
+    '@media (max-width: 768px)': {
       display: 'none',
     },
   },
