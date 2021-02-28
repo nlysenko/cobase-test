@@ -27,6 +27,9 @@ const useStyles = createUseStyles({
     backgroundColor: RhinoColor,
     transition: '0.5s',
     overflow: 'scroll',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
 
   sideBarIsOpen: {

@@ -21,7 +21,12 @@ import {
 
 const useStyles = createUseStyles({
   progressBar: {
-    paddingLeft: 30,
+    marginBottom: 'auto',
+    padding: {
+      top: 10,
+      left: 30,
+      bottom: 15,
+    },
   },
 
   title: {

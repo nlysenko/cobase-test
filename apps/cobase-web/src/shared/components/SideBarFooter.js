@@ -11,9 +11,8 @@ import { DustyGrayColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
   footer: {
-    height: 60,
+    minHeight: 88,
     borderTop: [1, 'solid', DustyGrayColor],
-    marginTop: 25,
   },
 })
 

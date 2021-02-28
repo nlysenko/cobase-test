@@ -17,7 +17,7 @@ const useStyles = createUseStyles({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    height: 60,
+    minHeight: 60,
     borderBottom: [1, 'solid', DustyGrayColor],
   },
 })

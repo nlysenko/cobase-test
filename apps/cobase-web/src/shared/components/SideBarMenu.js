@@ -31,10 +31,8 @@ import {
 
 const useStyles = createUseStyles({
   menu: {
-    padding: {
-      top: 31,
-      bottom: 25,
-    },
+    paddingTop: 31,
+    marginBottom: 'auto',
   },
 
   caption: {
