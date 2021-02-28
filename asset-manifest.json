@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/cobase-test/static/js/main.ded4f1e5.chunk.js",
-    "main.js.map": "/cobase-test/static/js/main.ded4f1e5.chunk.js.map",
+    "main.js": "/cobase-test/static/js/main.a6d539ef.chunk.js",
+    "main.js.map": "/cobase-test/static/js/main.a6d539ef.chunk.js.map",
     "runtime-main.js": "/cobase-test/static/js/runtime-main.5292e7ef.js",
     "runtime-main.js.map": "/cobase-test/static/js/runtime-main.5292e7ef.js.map",
     "static/js/2.1ff43424.chunk.js": "/cobase-test/static/js/2.1ff43424.chunk.js",
@@ -37,6 +37,6 @@
   "entrypoints": [
     "static/js/runtime-main.5292e7ef.js",
     "static/js/2.1ff43424.chunk.js",
-    "static/js/main.ded4f1e5.chunk.js"
+    "static/js/main.a6d539ef.chunk.js"
   ]
 }
