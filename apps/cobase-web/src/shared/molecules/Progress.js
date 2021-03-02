@@ -22,7 +22,6 @@ import {
 
 const useStyles = createUseStyles({
   progressBar: {
-    marginBottom: 'auto',
     padding: {
       top: 10,
       left: 30,

@@ -31,7 +31,6 @@ const useStyles = createUseStyles({
   },
 
   sideBarOpenInner: {
-    width: 1920,
     height: 960,
     backgroundColor: BgColor,
     padding: {
@@ -42,7 +41,6 @@ const useStyles = createUseStyles({
   },
 
   sideBarClosedInner: {
-    width: 1920,
     minHeight: 1200,
     backgroundColor: BgColor,
     padding: {

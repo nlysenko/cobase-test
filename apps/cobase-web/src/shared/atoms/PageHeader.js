@@ -15,7 +15,7 @@ const useStyles = createUseStyles({
     borderBottom: [1, 'solid', BotticelliColor],
     display: 'flex',
     alignItems: 'center',
-    paddingLeft: 10,
+    paddingLeft: 29,
   },
 
   title: {
