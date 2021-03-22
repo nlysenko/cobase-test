@@ -13,7 +13,7 @@ import ProgressBtn from 'shared/buttons/ProgressBtn'
 import { ReactComponent as CreateIcon } from 'assets/svg/create.svg'
 import { ReactComponent as ShareIcon } from 'assets/svg/share.svg'
 
-import { NepalColor } from 'shared/styles/colors'
+import { NepalColor, GothicColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
   controls: {
@@ -47,6 +47,11 @@ const useStyles = createUseStyles({
   createIcon: {
     display: 'inline-block',
     height: 16,
+    cursor: 'pointer',
+
+    '&:hover path': {
+      fill: GothicColor,
+    },
   },
 
   shareIcon: {

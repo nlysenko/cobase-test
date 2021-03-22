@@ -7,6 +7,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { createUseStyles } from 'react-jss'
+import { useSpring, animated } from 'react-spring'
 
 import getNumberCompletedSubtasks from 'shared/js/getNumberCompletedSubtasks'
 
@@ -21,7 +22,11 @@ import {
 
 const useStyles = createUseStyles({
   progressBar: {
-    paddingLeft: 30,
+    padding: {
+      top: 10,
+      left: 30,
+      bottom: 15,
+    },
   },
 
   title: {
@@ -88,8 +93,12 @@ const Progress = (props) => {
   const taskProgress =
     (getNumberCompletedSubtasks(currentSubtasks) / currentSubtasks.length) * 100
 
+  const taskProgressResult = useSpring({ percentage: taskProgress })
+
   const projectProgress =
     (getNumberCompletedSubtasks(overallSubtasks) / overallSubtasks.length) * 100
+
+  const projectProgressResult = useSpring({ percentage: projectProgress })
 
   const taskProgressStyle = {
     width: taskProgress + '%',
@@ -113,7 +122,9 @@ const Progress = (props) => {
           <div className={classes.taskProgress} style={taskProgressStyle} />
         </div>
 
-        <span className={classes.indicator}>{+taskProgress.toFixed(2)}</span>
+        <animated.div className={classes.indicator}>
+          {taskProgressResult.percentage.interpolate((x) => x.toFixed(0) + '%')}
+        </animated.div>
       </div>
 
       <span className={classes.name}>Overal project</span>
@@ -126,7 +137,11 @@ const Progress = (props) => {
           />
         </div>
 
-        <span className={classes.indicator}>{+projectProgress.toFixed(2)}</span>
+        <animated.div className={classes.indicator}>
+          {projectProgressResult.percentage.interpolate(
+            (x) => x.toFixed(0) + '%'
+          )}
+        </animated.div>
       </div>
     </div>
   )

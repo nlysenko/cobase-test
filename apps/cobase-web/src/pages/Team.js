@@ -6,7 +6,7 @@
 
 import React, { useEffect } from 'react'
 
-import PageHeader from 'shared/atoms/PageHeader'
+import TopBlock from 'shared/atoms/TopBlock'
 
 const Team = () => {
   useEffect(() => {
@@ -14,9 +14,9 @@ const Team = () => {
   })
 
   return (
-    <div>
-      <PageHeader name="Team page" />
-    </div>
+    <main>
+      <TopBlock name="Team page" />
+    </main>
   )
 }
 

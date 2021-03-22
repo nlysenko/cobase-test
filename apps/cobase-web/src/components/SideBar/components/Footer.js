@@ -1,6 +1,6 @@
 /**
  *
- * SideBarFooter
+ * Footer
  *
  */
 
@@ -11,16 +11,15 @@ import { DustyGrayColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
   footer: {
-    height: 60,
+    minHeight: 88,
     borderTop: [1, 'solid', DustyGrayColor],
-    marginTop: 25,
   },
 })
 
-const SideBarFooter = () => {
+const Footer = () => {
   const classes = useStyles()
 
-  return <footer className={classes.footer} />
+  return <div className={classes.footer} />
 }
 
-export default SideBarFooter
+export default Footer

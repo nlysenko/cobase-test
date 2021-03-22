@@ -8,25 +8,31 @@ import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { createUseStyles } from 'react-jss'
 
-import SideBarHeader from 'shared/components/SideBarHeader'
-import SideBarMenu from 'shared/components/SideBarMenu'
-import SideBarFooter from 'shared/components/SideBarFooter'
-
-import Progress from 'shared/molecules/Progress'
+import Top from './components/Top'
+import Menu from './components/Menu'
+import Progress from './components/Progress'
+import Footer from './components/Footer'
 
 import { RhinoColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  sidebar: {
+  sideBar: {
     position: 'fixed',
     top: 0,
-    left: -250,
+    left: 0,
     bottom: 0,
-    zIndex: 100,
+    zIndex: 300,
     width: 250,
     backgroundColor: RhinoColor,
     transition: '0.5s',
     overflow: 'scroll',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+
+    '@media (max-width: 769px)': {
+      left: -250,
+    },
   },
 
   sideBarIsOpen: {
@@ -38,7 +44,7 @@ const useStyles = createUseStyles({
 const SideBar = (props) => {
   const [progressIsOpen, setProgressIsOpen] = useState(false)
 
-  const { sideBarIsOpen, taskIndex } = props
+  const { sideBarIsOpen, toggleSideBar, taskIndex } = props
 
   const usePageViews = () => {
     let location = useLocation()
@@ -52,19 +58,19 @@ const SideBar = (props) => {
 
   const classes = useStyles()
   return (
-    <div
-      className={`${classes.sidebar} ${
+    <aside
+      className={`${classes.sideBar} ${
         sideBarIsOpen ? classes.sideBarIsOpen : ''
       }`}
     >
-      <SideBarHeader />
+      <Top />
 
-      <SideBarMenu />
+      <Menu toggleSideBar={toggleSideBar} />
 
       {progressIsOpen ? <Progress taskIndex={taskIndex} /> : false}
 
-      <SideBarFooter />
-    </div>
+      <Footer />
+    </aside>
   )
 }
 

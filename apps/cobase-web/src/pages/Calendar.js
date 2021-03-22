@@ -1,6 +1,6 @@
 /**
  *
- * Projects
+ * Calendar
  *
  */
 
@@ -8,16 +8,16 @@ import React, { useEffect } from 'react'
 
 import TopBlock from 'shared/atoms/TopBlock'
 
-const Projects = () => {
+const Calendar = () => {
   useEffect(() => {
-    document.title = 'Projects | CoBase'
+    document.title = 'Calendar | CoBase'
   })
 
   return (
     <main>
-      <TopBlock name="Projects page" />
+      <TopBlock name="Calendar page" />
     </main>
   )
 }
 
-export default Projects
+export default Calendar
