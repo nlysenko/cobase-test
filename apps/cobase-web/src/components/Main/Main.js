@@ -12,6 +12,7 @@ import Home from 'pages/Home'
 import Overview from 'pages/Overview'
 import TaskManager from 'pages/TaskManager'
 import Drawings from 'pages/Drawings'
+import Calendar from 'pages/Calendar'
 import Employees from 'pages/Employees'
 import Reports from 'pages/Reports'
 import Projects from 'pages/Projects'
@@ -35,7 +36,7 @@ const useStyles = createUseStyles({
         top: 72,
         left: 14,
         right: 14,
-        bottom: 31,
+        bottom: 88,
       },
     },
   },
@@ -64,6 +65,7 @@ const Main = (props) => {
         />
         ,
         <Route exact path="/drawings" component={Drawings} />,
+        <Route exact path="/calendar" component={Calendar} />,
         <Route exact path="/employees" component={Employees} />,
         <Route exact path="/reports" component={Reports} />,
         <Route exact path="/reports" component={Reports} />,

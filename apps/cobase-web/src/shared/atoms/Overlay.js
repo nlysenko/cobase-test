@@ -11,7 +11,7 @@ import { BlackColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
   overlay: {
-    position: 'absolute',
+    position: 'fixed',
     zIndex: 200,
     top: 0,
     left: 0,

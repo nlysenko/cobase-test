@@ -148,6 +148,8 @@ const App = (props) => {
         nextIssue={nextIssue}
         prevIssue={prevIssue}
       />
+
+      <Footer />
     </div>
   )
 }
