@@ -14,6 +14,12 @@ const useStyles = createUseStyles({
     height: 57,
     background: RhinoColor,
     marginTop: 31,
+    width: 780,
+    display: 'none',
+
+    '@media (max-width: 769px)': {
+      display: 'block',
+    },
   },
 })
 

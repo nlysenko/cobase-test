@@ -16,6 +16,8 @@ const useStyles = createUseStyles({
   toolbar: {
     position: 'fixed',
     top: 0,
+    left: 0,
+    right: 0,
     zIndex: 100,
     height: 60,
     backgroundColor: LochmaraColor,
@@ -23,37 +25,28 @@ const useStyles = createUseStyles({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: {
-      left: 19,
+      left: 269,
       right: 30,
     },
-  },
-
-  sidebarIsOpen: {
-    width: 'calc(100% - 250px)',
     transition: '0.5s',
-  },
 
-  sidebarIsClosed: {
-    width: '100%',
-    transition: '0.5s',
+    '@media (max-width: 769px)': {
+      paddingLeft: 19,
+    },
   },
 })
 
 const ToolBar = (props) => {
-  const { sideBarIsOpen } = props
+  const { toggleSideBar } = props
 
   const classes = useStyles()
 
   return (
-    <div
-      className={`${classes.toolbar} ${
-        sideBarIsOpen ? classes.sidebarIsOpen : classes.sidebarIsClosed
-      }`}
-    >
-      <Navbar toggleSideBar={props.toggleSideBar} />
+    <header className={classes.toolbar}>
+      <Navbar toggleSideBar={toggleSideBar} />
 
       <SubMenu />
-    </div>
+    </header>
   )
 }
 

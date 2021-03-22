@@ -1,6 +1,6 @@
 /**
  *
- * SideBarHeader
+ * Top
  *
  */
 
@@ -12,7 +12,7 @@ import Logo from 'shared/atoms/Logo'
 import { DustyGrayColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  header: {
+  top: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -22,14 +22,14 @@ const useStyles = createUseStyles({
   },
 })
 
-const SideBarHeader = () => {
+const Top = () => {
   const classes = useStyles()
 
   return (
-    <header className={classes.header}>
+    <div className={classes.top}>
       <Logo />
-    </header>
+    </div>
   )
 }
 
-export default SideBarHeader
+export default Top

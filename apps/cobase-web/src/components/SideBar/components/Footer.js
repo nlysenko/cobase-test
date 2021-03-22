@@ -1,6 +1,6 @@
 /**
  *
- * SideBarFooter
+ * Footer
  *
  */
 
@@ -16,10 +16,10 @@ const useStyles = createUseStyles({
   },
 })
 
-const SideBarFooter = () => {
+const Footer = () => {
   const classes = useStyles()
 
-  return <footer className={classes.footer} />
+  return <div className={classes.footer} />
 }
 
-export default SideBarFooter
+export default Footer

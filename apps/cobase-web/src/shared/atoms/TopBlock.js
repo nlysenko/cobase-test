@@ -1,6 +1,6 @@
 /**
  *
- * PageHeader
+ * TopBlock
  *
  */
 
@@ -10,7 +10,7 @@ import { createUseStyles } from 'react-jss'
 import { BotticelliColor, NepalColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  header: {
+  top: {
     height: 53,
     borderBottom: [1, 'solid', BotticelliColor],
     display: 'flex',
@@ -24,16 +24,16 @@ const useStyles = createUseStyles({
   },
 })
 
-const PageHeader = (props) => {
+const TopBlock = (props) => {
   const { name } = props
 
   const classes = useStyles()
 
   return (
-    <header className={classes.header}>
+    <div className={classes.top}>
       <h3 className={classes.title}>{name}</h3>
-    </header>
+    </div>
   )
 }
 
-export default PageHeader
+export default TopBlock

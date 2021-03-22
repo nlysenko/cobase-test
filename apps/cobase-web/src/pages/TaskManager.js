@@ -26,11 +26,7 @@ import { updateProgress } from 'app/redux/actions'
 import { BotticelliColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  taskManager: {
-    minHeight: '100%',
-  },
-
-  header: {
+  top: {
     height: 53,
     borderBottom: [1, 'solid', BotticelliColor],
     display: 'flex',
@@ -85,16 +81,16 @@ const TaskManager = (props) => {
 
   const classes = useStyles()
   return (
-    <div className={classes.taskManager}>
-      <header className={classes.header}>
+    <main>
+      <div className={classes.top}>
         <Status progress={task.progress} lastUpdatedTime={task.updated} />
 
         <PrevIssueBtn showPrevIssue={prevIssue} />
 
         <NextIssueBtn showNextIssue={nextIssue} />
-      </header>
+      </div>
 
-      <main className={classes.pageContent}>
+      <div className={classes.pageContent}>
         <Controls
           taskIndex={taskIndex}
           taskIsCompleted={taskIsCompleted}
@@ -116,8 +112,8 @@ const TaskManager = (props) => {
           taskIsCompleted={taskIsCompleted}
           taskOnPause={taskOnPause}
         />
-      </main>
-    </div>
+      </div>
+    </main>
   )
 }
 

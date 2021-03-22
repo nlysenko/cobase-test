@@ -4,99 +4,75 @@
  *
  */
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 import { createUseStyles } from 'react-jss'
-import { connect } from 'react-redux'
 
-import ToolBar from 'components/ToolBar/ToolBar'
-import SideBar from 'components/SideBar/SideBar'
-import MainPage from 'components/MainPage/MainPage'
+import Home from 'pages/Home'
+import Overview from 'pages/Overview'
+import TaskManager from 'pages/TaskManager'
+import Drawings from 'pages/Drawings'
+import Employees from 'pages/Employees'
+import Reports from 'pages/Reports'
+import Projects from 'pages/Projects'
+import People from 'pages/People'
+import Team from 'pages/Team'
 
-import playAudioMelody from 'shared/audio/playAudioMelody'
-import toggleIssueAudio from 'assets/mp3/toggle-issue.mp3'
-import toggleIssueFalseAudio from 'assets/mp3/toggle-issue-false.mp3'
+import { BgColor } from 'shared/styles/colors'
 
 const useStyles = createUseStyles({
-  main: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+  wrapper: {
+    backgroundColor: BgColor,
+    padding: {
+      top: 72,
+      bottom: 72,
+      left: 289,
+    },
     transition: '0.5s',
-  },
 
-  sidebarOpen: {
-    paddingLeft: 250,
-    transition: '0.5s',
+    '@media (max-width: 769px)': {
+      padding: {
+        top: 72,
+        left: 14,
+        right: 14,
+        bottom: 31,
+      },
+    },
   },
 })
 
 const Main = (props) => {
-  const { tasks } = props
-
-  useEffect(() => {
-    function handleResize() {
-      setSideBarOpen(window.innerWidth >= 769)
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    handleResize()
-
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
-  const [sideBarOpen, setSideBarOpen] = useState(window.innerWidth >= 769)
-  const [taskIndex, setTaskIndex] = useState(0)
-
-  const nextIssue = () => {
-    if (taskIndex + 1 in tasks) {
-      setTaskIndex(taskIndex + 1)
-
-      playAudioMelody(toggleIssueAudio)
-    } else {
-      playAudioMelody(toggleIssueFalseAudio)
-    }
-  }
-
-  const prevIssue = () => {
-    if (taskIndex - 1 in tasks) {
-      setTaskIndex(taskIndex - 1)
-
-      playAudioMelody(toggleIssueAudio)
-    } else {
-      playAudioMelody(toggleIssueFalseAudio)
-    }
-  }
-
-  const toggleSideBar = () => {
-    setSideBarOpen(!sideBarOpen)
-  }
+  const { taskIndex, nextIssue, prevIssue } = props
 
   const classes = useStyles()
 
   return (
-    <div
-      className={`${classes.main} ${sideBarOpen ? classes.sidebarOpen : ''}`}
-    >
-      <ToolBar sideBarIsOpen={sideBarOpen} toggleSideBar={toggleSideBar} />
-
-      <SideBar sideBarIsOpen={sideBarOpen} taskIndex={taskIndex} />
-
-      <MainPage
-        sideBarIsOpen={sideBarOpen}
-        taskIndex={taskIndex}
-        nextIssue={nextIssue}
-        prevIssue={prevIssue}
-      />
+    <div className={classes.wrapper}>
+      <Switch>
+        <Route exact path="/" component={Home} />,
+        <Route exact path="/overview" component={Overview} />,
+        <Route
+          exact
+          path="/task-manager"
+          render={() => (
+            <TaskManager
+              taskIndex={taskIndex}
+              nextIssue={nextIssue}
+              prevIssue={prevIssue}
+            />
+          )}
+        />
+        ,
+        <Route exact path="/drawings" component={Drawings} />,
+        <Route exact path="/employees" component={Employees} />,
+        <Route exact path="/reports" component={Reports} />,
+        <Route exact path="/reports" component={Reports} />,
+        <Route exact path="/projects" component={Projects} />,
+        <Route exact path="/people" component={People} />,
+        <Route exact path="/team" component={Team} />,
+      </Switch>
     </div>
   )
 }
 
-const mapStateToProps = function(state) {
-  return {
-    tasks: state.tasks,
-  }
-}
-export default connect(mapStateToProps)(Main)
+export default Main

@@ -1,16 +1,17 @@
 /**
  *
- * SideBarMenu
+ * Menu
  *
  */
 
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 import { createUseStyles } from 'react-jss'
 import { connect } from 'react-redux'
 
 import playAudioMelody from 'shared/audio/playAudioMelody'
 import OpenNewPageMelody from 'assets/mp3/open-page.mp3'
+import FalseOpenNewPageMelody from 'assets/mp3/toggle-page-false.mp3'
 
 import { ReactComponent as OverviewIcon } from 'assets/svg/overview-icon.svg'
 import { ReactComponent as TaskManagerIcon } from 'assets/svg/task-manager-icon.svg'
@@ -135,10 +136,26 @@ const useStyles = createUseStyles({
   },
 })
 
-const SideBarMenu = (props) => {
-  const { tasks } = props
+const Menu = (props) => {
+  const { tasks, toggleSideBar } = props
 
   const newTasks = Object.keys(tasks).length
+
+  const { pathname } = useLocation()
+
+  const togglePage = (nextPage) => {
+    if (nextPage !== pathname) {
+      toggleSideBar()
+
+      playAudioMelody(OpenNewPageMelody)
+    } else {
+      playAudioMelody(FalseOpenNewPageMelody)
+    }
+  }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
 
   const classes = useStyles()
   return (
@@ -152,7 +169,7 @@ const SideBarMenu = (props) => {
               className={classes.item}
               activeClassName={classes.active}
               to="/overview"
-              onClick={() => playAudioMelody(OpenNewPageMelody)}
+              onClick={() => togglePage('/overview')}
             >
               <i className={`${classes.icon} ${classes.overview}`}>
                 <OverviewIcon />
@@ -171,7 +188,7 @@ const SideBarMenu = (props) => {
               className={classes.item}
               activeClassName={classes.active}
               to="/task-manager"
-              onClick={() => playAudioMelody(OpenNewPageMelody)}
+              onClick={() => togglePage('/task-manager')}
             >
               <i className={`${classes.icon} ${classes.tasks}`}>
                 <TaskManagerIcon />
@@ -192,7 +209,7 @@ const SideBarMenu = (props) => {
               className={classes.item}
               activeClassName={classes.active}
               to="/drawings"
-              onClick={() => playAudioMelody(OpenNewPageMelody)}
+              onClick={() => togglePage('/drawings')}
             >
               <i className={`${classes.icon} ${classes.drawings}`}>
                 <DrawingsIcon />
@@ -211,7 +228,7 @@ const SideBarMenu = (props) => {
               className={classes.item}
               activeClassName={classes.active}
               to="/employees"
-              onClick={() => playAudioMelody(OpenNewPageMelody)}
+              onClick={() => togglePage('/employees')}
             >
               <i className={`${classes.icon} ${classes.employees}`}>
                 <EmployeesIcon />
@@ -230,7 +247,7 @@ const SideBarMenu = (props) => {
               className={classes.item}
               activeClassName={classes.active}
               to="/reports"
-              onClick={() => playAudioMelody(OpenNewPageMelody)}
+              onClick={() => togglePage('/reports')}
             >
               <i className={`${classes.icon} ${classes.reports}`}>
                 <ReportsIcon />
@@ -255,4 +272,4 @@ const mapStateToProps = function(state) {
   }
 }
 
-export default connect(mapStateToProps)(SideBarMenu)
+export default connect(mapStateToProps)(Menu)
